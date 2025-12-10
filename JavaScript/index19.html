@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*🟨 3 könnyebb JavaScript feladat
+            1️⃣ Pozitív számok átlaga
+
+            Írj függvényt, ami egy számtömbből csak a pozitív számok átlagát adja vissza!
+            Ha nincs pozitív szám, térjen vissza 0-val.
+        */
+   
+
+            function pozitivAtlag(tomb) {
+                // ide írd a megoldást
+                const pozsz=tomb.filter((szam)=>szam >=0);
+                if(pozsz.length===0)return 0;
+                const osszeguk=pozsz.reduce((acc,curr)=>acc+curr,0);
+                return osszeguk/pozsz.length;
+
+            }
+
+            console.log(pozitivAtlag([1, -2, 3, 4]));   // → 2.67 (vagy 2.6666...)
+            console.log(pozitivAtlag([-1, -2, 0]));     // → 0
+            console.log(pozitivAtlag([]));             // → 0
+
+  
+
+        /*2️⃣ Szavak hosszának tömbje
+
+            Készíts függvényt, ami egy szavak tömbjéből visszaad egy új tömböt,
+            amiben a szavak hossza szerepel!
+        */
+
+            function szavakHossza(szavak) {
+                // ide írd a megoldást
+                return szavak.map((szo)=>szo.length);
+
+            }
+
+            console.log(szavakHossza(["alma", "banán", "körte"])); // → [4, 5, 5]
+            console.log(szavakHossza([]));                        // → []
+        /*
+
+            3️⃣ Csak a páros indexű elemek
+
+            Írj függvényt, ami egy tömbből csak a páros indexen lévő elemeket adja vissza
+            (0, 2, 4, … indexek)!
+        */
+
+            function parosIndexuElemek(tomb) {
+                // ide írd a megoldást
+                return tomb.filter((elem, index) => index % 2 === 0);
+                
+               
+            }
+
+            console.log(parosIndexuElemek(["a","b","c","d","e"])); // → ["a","c","e"]
+            console.log(parosIndexuElemek([10, 20, 30]));          // → [10, 30]
+
+
+    /*
+            
+        🧠 2 picit nehezebb JavaScript feladat
+        4️⃣ Egyedi elemek sorrendmegőrzéssel
+
+        Készíts függvényt, ami egy tömbből eltávolítja a duplikátumokat,
+        de az első előfordulás sorrendje megmarad.
+
+    */
+
+        function egyediElemek(tomb) {
+        // ide írd a megoldást
+            return [...new Set(tomb)];
+            
+
+        }
+
+        console.log(egyediElemek([3, 1, 3, 2, 1])); // → [3, 1, 2]
+        console.log(egyediElemek(["a","b","a","c","b"])); // → ["a","b","c"]
+
+        /*5️⃣ Karaktergyakoriság – csak betűk (a–z, kis/nagy mindegy)
+
+        Írj függvényt, ami egy szövegben megszámolja, hogy az a–z betűk hányszor fordulnak elő
+        (kis/nagybetű ne számítson), és egy objektumban adja vissza.
+        */
+
+        function betuGyakorisagAz(szoveg) {
+            // ide írd a megoldást
+            const gyakorisag={};
+           
+            const ujSzoveg=szoveg.toLowerCase();
+            const tisztaSzoveg=ujSzoveg.replace(/[^a-z]/g, "");
+
+
+            for(let char of tisztaSzoveg){
+                gyakorisag[char]=(gyakorisag[char] ||0)+1;
+
+            }
+            return gyakorisag;
+        }
+
+        console.log(betuGyakorisagAz("Hello 123!!!"));
+        // → pl. { h:1, e:1, l:2, o:1 }
+        
+        
+        
+        
+        
+      
+        
+
+
+
+
+    </script>
+    
+</body>
+</html>

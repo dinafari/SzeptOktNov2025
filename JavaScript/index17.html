@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //számold meg  hánydb szó van egy tömben és hánydb szám.
+
+        function szavakszamokSzama(szavak){
+
+            
+        
+            const szamokdb=szavak.filter((elem)=>typeof elem==='number').length;
+            const szodb=szavak.filter((elem)=>typeof elem==='string').length;
+            return {szodb,szamokdb};
+             
+              
+                
+    
+            
+        }
+        console.log(szavakszamokSzama(["Hello" ,"November",3,4]));// {szodb:2,szamokdb:2}
+
+        /*
+        Készíts függvényt, ami megszámolja, hogy egy tömbben
+        🧩 1) Típusonkénti darabszám visszaadása
+
+            Feladat:
+            Készíts függvényt, amely megszámolja, hogy egy heterogén tömbben hány:
+
+            number
+
+            string
+
+            boolean
+
+            object (nem null!)
+
+            undefined
+
+            típusú elem van.
+
+            Visszatérés: egy objektum:  
+            Pl.:
+
+            tipusDarab([1, "alma", true, {a:1}, null, undefined, 3])
+            → { number:2, string:1, boolean:1, object:1, undefined:1 }
+        
+        
+        
+        */
+
+
+        function tipusDarab(tomb){
+
+            const szamdb=tomb.filter((elem)=>typeof elem==='number').length;
+            const szovegdb=tomb.filter((elem)=>typeof elem==='string').length;
+
+            const booleandb= tomb.filter((elem)=>typeof elem==='boolean').length;
+            const undefineddb= tomb.filter((elem)=>typeof elem==='undefined').length;
+            const objectdb=tomb.filter((elem)=>typeof elem==='object' &&elem!==null).length;
+            return {
+                szamdb,
+                szovegdb,
+                booleandb,
+                undefineddb,
+                objectdb,
+            }
+
+
+
+
+        }
+        console.log(tipusDarab([1, "alma", true, {a:1}, null, undefined, 3]));// → { number:2, string:1, boolean:1, object:1, undefined:1 }
+
+        /*
+            🧩 2) Csak a számokat add össze egy heterogén tömbből
+
+            Feladat:
+            Írj függvényt, amely egy tetszőleges tömbből:
+
+            csak a number típusokat gyűjti ki
+
+            majd visszaadja az összegüket
+
+            Ha nincs szám → térjen vissza 0-val.
+            Pl.:
+
+            osszegSzamok(["hello", 2, true, 5, "x", 3])
+            → 10
+        
+        
+        
+        
+        */
+
+        function osszegSzamok(tomb2){
+            
+            const number=tomb2.filter((elem)=>typeof elem==='number');
+            if(number.length===0)return 0;
+            const osszeguk=number.reduce((acc,curr)=>acc+curr,0);
+            return osszeguk;
+        }
+        console.log(osszegSzamok(["hello", 2, true, 5, "x", 3]));// → 10
+        console.log(osszegSzamok(["word", "apple","icecream",false]));// → 0
+
+        /*
+            🧩 3) Számjegyek számlálása heterogén tömbben lévő stringekből
+
+            Feladat:
+            Egy tömbben vannak számok, stringek, boolean-ek stb.
+
+            Készíts függvényt, amely:
+
+            csak a string elemeket vizsgálja
+
+            megszámolja, hogy együttesen hány darab számjegy (0–9) fordul elő bennük
+
+            eredmény: objektum, ahol a kulcs a számjegy, az érték a darabszám
+
+            Példa:
+            szamjegyek(["a1b2", 33, false, "99x", "hello3"])
+            → { "1":1, "2":1, "9":2, "3":1 }
+
+
+        
+        
+        
+        */
+
+        function szamjegyek(tomb3){
+
+            const string=tomb3.filter((elem)=>typeof elem==='string');
+
+            const gyakorisag={};
+
+            for(let szo of string){
+                const talalatok=szo.match(/[0-9]/g);
+                if (!talalatok) continue; // ha nincs számjegy, lépj tovább
+
+                for(const szamjegy of talalatok){
+                    gyakorisag[szamjegy]=(gyakorisag[szamjegy]|| 0)+1;
+
+                }
+
+               
+            }
+            return gyakorisag;
+
+        }
+        console.log(szamjegyek(["a1b2", 33, false, "99x", "hello3"]));//→ { "1":1, "2":1, "9":2, "3":1 }
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladat9JS</title>
+</head>
+<body>
+
+    <script>
+        /*   
+            🟨 3 JavaScript feladat
+            1️⃣ Számok négyzetösszege
+
+            Írj egy függvényt negyzetOsszeg(tomb), ami visszaadja az összes szám négyzetének az összegét.
+            👉 [1,2,3] → 1²+2²+3² = 14
+
+        */
+
+        function negyzetOsszeg(tomb){
+            return tomb.map((szam)=>szam*szam).reduce((acc,curr)=>acc+curr,0);
+            //Vagy rövidebben:return tomb.reduce((acc, n) => acc + n*n, 0);
+
+
+        }
+        console.log(negyzetOsszeg([1,2,3]));//14
+
+
+
+
+        /*  2️⃣ Magánhangzó-számláló (kis/nagy betűvel)
+
+            maganhangzokSzama(szoveg) → számolja meg az aáeéiíoóöőuúüű betűket, kis és nagybetűre érzéketlenül.
+            👉 "Almafa" → 3
+
+        */ 
+
+        function maganhangzokSzama(szoveg){
+
+            const regex= /[aáeéiíoóöőuúüű]/gi;
+            const talalatok=szoveg.match(regex);
+            return talalatok ? talalatok.length:0 ;//null-kezelés
+
+
+        }
+        console.log(maganhangzokSzama("Almafa"));//3
+
+        /*
+            //Vagy includes()al és for of-al: 
+        
+            function maganhangzokSzama2(szoveg){
+                const v = "aáeéiíoóöőuúüűAÁEÉIÍOÓÖŐUÚÜŰ";
+                let db = 0;
+                for (const ch of szoveg) if (v.includes(ch)) db++;
+                return db;
+            }               
+        */
+
+
+
+           /* 3️⃣ Két tömb egyesítése duplikátum nélkül
+
+            egyesit(t1, t2) → adjon vissza egy új tömböt, amiben minden elem csak egyszer szerepel.
+            👉 [1,2,3], [2,3,4] → [1,2,3,4]
+    
+        
+        
+        */
+
+        function egyesit(t1,t2){
+
+            const egyesitett=t1.concat(t2);//t1 összevonása t2-vel
+            return egyesitett.filter((value,index)=>egyesitett.indexOf(value)===index);
+            //vagy:
+            //return [...new Set(egyesitett)];
+
+            //vagy rövidebben:
+            //return [...new Set([...t1, ...t2])];
+        }
+        console.log(egyesit([1,2,3], [2,3,4] ));//[1,2,3,4]
+
+
+
+
+
+    </script>
+
+   
+
+    
+</body>
+</html>

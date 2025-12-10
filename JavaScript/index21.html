@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            🟨 4 JavaScript feladat
+            ✅ 1) Számok összege – csak pozitív és páros számok (könnyebb)
+
+            Írj függvényt, amely:
+
+            egy számtömbből
+
+            csak a pozitív ÉS páros számokat adja össze!
+
+            nincs találat → térjen vissza 0-val.
+
+            Példa:
+
+            pozitivParosOsszeg([1, 2, -4, 6, -3]) → 8
+            pozitivParosOsszeg([-2, -4]) → 0
+
+        */
+
+        function pozitivParosOsszeg(tomb){
+
+            const pozitvparos= tomb.filter((szam)=>szam %2===0 && szam >0);
+            if(pozitvparos.length===0)return 0;
+            return pozitvparos.reduce((acc,curr)=>acc+curr,0);
+
+        }
+
+        console.log(pozitivParosOsszeg([1, 2, -4, 6, -3]));
+        console.log( pozitivParosOsszeg([-2, -4]));
+       /*
+
+            ✅ 2) Szövegek szűrése – csak nagybetűvel kezdődők (könnyebb)
+
+         Írj függvényt, ami visszaadja azokat a stringeket a tömbből,
+            amelyek nagybetűvel kezdődnek.
+
+            Figyelj: üres string ne okozzon hibát.
+
+            Példa:
+
+            nagybetus(["Alma", "banán", "Cica", "dió"]) → ["Alma", "Cica"]
+
+
+        */
+
+        function nagybetus(string){
+
+            const szavak=string.map((szo)=>szo);
+
+            const nagybetus= szavak.filter((szo)=> /^[A-Z]/.test(szo[0]));
+            //Ez így pontosabb mert az első karaktert vizsgálja
+            //A test azt vizsgálja, hogy a szo nagybetűvel kezdődik-e szo[0] értékadással
+            //Ez is lehetne?Pl.:
+            // szo[0] === szo[0].match(/[A-Z]/)[0]
+            //Vagy :
+            // szo.charAt(0) === szo.charAt(0).match(/[A-Z]/)[0]
+
+
+            if(nagybetus.length===0)return [];
+            return nagybetus;
+
+        }
+        console.log(nagybetus(["Alma", "banán", "Cica", "dió"]));  
+
+        /*
+         Vagy:
+            function nagybetus(szavak){
+                return szavak.filter(szo => szo[0] && szo[0] === szo[0].toUpperCase());
+            }
+
+            Ez azt nézi:
+            – van-e első betű (szo[0])
+            – és az nagybetű-e.
+        
+        
+        
+        
+        */
+
+
+
+
+        /*
+            ez nekem nehezebb volt mint a 4.feladat 
+            itt kellet segítséget kérnem  :)
+
+            🧠 3) Leggyakoribb karakter egy szövegben (közepes) 
+
+            Készíts függvényt, amely:
+
+            egy szövegben megszámolja a karaktereket
+
+            visszaadja azt, amelyik legtöbbször szerepel
+
+            üres szöveg → térjen vissza null-lal
+
+            Példa:
+
+            leggyakoribbKarakter("almafa") → "a"
+            leggyakoribbKarakter("") → null
+
+        */
+
+            function leggyakoribbKarakter(szoveg){
+                const leggyakorbb={};
+
+                if(szoveg.length===0)return null;
+
+                for(const char of szoveg){
+                    leggyakorbb[char]=(leggyakorbb[char] || 0)+1;
+                }   
+                let maxDb=0;
+                let leggyakoribbChar=null;
+                for(const char in leggyakorbb){
+                    if(leggyakorbb[char]>maxDb){
+                        maxDb=leggyakorbb[char];
+                        leggyakoribbChar=char;
+                    }
+                }
+                return leggyakoribbChar;
+
+            }
+            console.log(leggyakoribbKarakter("almafa") );//→ "a"
+            console.log(leggyakoribbKarakter("")); //→ null
+
+            //VAGY:
+            function leggyakoribbKarakter2(szoveg){
+                if(szoveg.length===0)return null;
+
+                const karakterSzamlalo= szoveg.split('').reduce((acc, curr)=>{
+                    acc[curr]=(acc[curr] || 0)+1;
+                    return acc;
+                },{});
+
+                let maxDb=0;
+                let leggyakoribbChar=null;
+
+                for(const char in karakterSzamlalo){
+                    if(karakterSzamlalo[char]>maxDb){
+                        maxDb=karakterSzamlalo[char];
+                        leggyakoribbChar=char;
+                    }
+                }
+                return leggyakoribbChar;
+            }
+            console.log(leggyakoribbKarakter2("almafa") );//→ "a"
+            console.log(leggyakoribbKarakter2("")); //→ null
+
+
+        
+
+           /* 🧠 4) Objektumtömb szűrése – ársáv alapján (nehezebb)
+
+            Készíts függvényt, amely egy terméklistából visszaadja azokat a termékeket, amelyek:
+
+            ára minAr ≤ ár ≤ maxAr
+
+            A termékek így néznek ki:
+
+            { nev: string, ar: number }
+
+
+            Példa:
+
+            szuresArSzerint(
+                [{nev:"Toll", ar:200}, {nev:"Táska", ar:5000}, {nev:"Füzet", ar:1200}],
+                500, 3000
+            )
+            // → [{nev:"Füzet", ar:1200}]
+
+         
+         */
+
+         function szuresArSzerint(termeklista,minAr,maxAr){
+            const szurt= termeklista.filter((termek)=>termek.ar>=minAr && termek.ar<=maxAr);
+            return szurt;
+
+
+
+        }
+        console.log(szuresArSzerint( [{nev:"Toll", ar:200}, {nev:"Táska", ar:5000}, {nev:"Füzet", ar:1200}], 500, 3000))// → [{nev:"Füzet", ar:1200}]
+
+
+
+    </script>
+
+   
+
+    
+</body>
+</html>

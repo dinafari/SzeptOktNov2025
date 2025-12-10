@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*
+
+            🟨 3 JavaScript feladat
+            🧩 1️⃣ Számjegyek összege
+
+            Írj függvényt, ami egy szám összes számjegyének az összegét adja vissza.
+            Negatív szám esetén a mínuszjelet ne számítsa bele.
+
+           
+
+         Tipp: Math.abs(), toString(), split(''), map(Number), reduce().
+
+        */
+            function szamjegyOsszeg(szam){
+                // ide írd a megoldást
+
+               
+                return Math.abs(szam).toString().split('').map(Number).reduce((acc,curr)=>acc+ curr,0);
+                // a "-" nem szám!
+                //Ezért előbb kell abszolút érték Math.abs()-el, majd csak utána  a split.
+
+             
+               
+            }
+
+            console.log(szamjegyOsszeg(1234));   // → 10
+            console.log(szamjegyOsszeg(-567));   // → 18
+            console.log(szamjegyOsszeg(0));      // → 0
+
+
+
+
+
+
+        /*   📊 2️⃣ Duplikátumok eltávolítása objektumtömbből
+
+        Készíts függvényt, ami egy objektumtömbből kiszedi a duplikátumokat a nev kulcs alapján.
+
+
+        💡 Tipp: filter() + findIndex().
+
+    */
+
+
+        function egyediEmberek(lista){
+            // ide írd a megoldást
+
+            const egyedi=lista.filter((szemely,index,array)=>index===array.findIndex(szemely=>szemely.nev===szemely.nev));
+            return egyedi;
+        }
+
+        const emberek = [
+            { nev: "Anna", kor: 25 },
+            { nev: "Béla", kor: 30 },
+            { nev: "Anna", kor: 28 }
+        ];
+
+        console.log(egyediEmberek(emberek));
+        // → [  {nev: "Anna", kor: 25 }, { nev: "Béla", kor: 30 } ]
+
+    /*
+
+        🔠 3️⃣ Betűk gyakorisága csak az ábécé betűire
+
+        Készíts függvényt, ami megszámolja, hogy egy szövegben csak az a–z ig betűk hányszor fordulnak elő (kis-nagybetű ne számítson).
+
+        💡Tipp: toLowerCase(), match(/[a-z]/g), majd for...of ciklus.
+
+        
+       
+        
+    */
+
+      function abcGyakorisag(szoveg){
+            // ide írd a megoldást
+
+            const tisztaszoveg=szoveg.toLowerCase().match(/[a-z]/g);
+            const gyakorisag={};
+            for(let betu of tisztaszoveg){
+                gyakorisag[betu] = (gyakorisag[betu] || 0) + 1;
+            }
+            return gyakorisag;
+        }
+
+        console.log(abcGyakorisag("Hello 123!!!"));
+        // → { h:1, e:1, l:2, o:1 }
+
+      
+       
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

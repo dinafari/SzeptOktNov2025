@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Csomag8</title>
+</head>
+<body>
+    <script>
+        /* 1) Magánhangzó-számláló (ékezetesekkel)
+
+            Írj függvényt, ami megszámolja, hány magánhangzó van a szövegben (pl. aáeéiíoóöőuúüű)
+
+            Példa: "jó reggelt" → 3
+            Hint: includes egy „maganhangzok” stringen.
+        */
+
+        //regex és match():
+
+        function maganhangzoDarab(szoveg){
+
+            const maganhangzok=szoveg.match(/[aáeéiíoóöőuúüű]/gi);
+            return maganhangzok ? maganhangzok.length:0;//null-kezelés.
+
+        }
+        console.log(maganhangzoDarab("jó reggelt"));//3
+
+        //for of ciklusslal és includes()-al:
+
+        function maganhangzoDarab2(szoveg){
+            const vowels="aáeéiíoóöőuúüűAÁEÉIÍOÓÖŐUÚÜŰ";
+            let count=0;
+
+            for(const betu of szoveg){
+                if (vowels.includes(betu)){
+                    count++;
+                }
+            }
+            return count;//Visszatér a 0-ról indított megszámlált db-al
+
+            
+           
+
+        }
+        console.log(maganhangzoDarab2("jó reggelt"));//3
+
+        /*  2.feladat:
+            1-szintű tömb-lapítás flat() nélkül
+
+            Írj függvényt, ami egy legfeljebb 1 szint mély beágyazott tömböt kilapít.
+
+            Hint: for...of + Array.isArray.
+
+            [1,[2,3],4] -> [1,2,3,4]
+
+        
+        
+        */
+
+        //for of ciklussal:
+
+        function lapit1(tomb) {//ezt találtam éa átalakítottam.Elmagyarázod nekem? :)
+            const osszevont=[];
+
+            for(let szam of tomb){
+
+                if(Array.isArray(szam)){
+                    for( const belsoszam of szam){
+                        osszevont.push(belsoszam);
+                    }
+                }else{
+                    osszevont.push(szam);
+                }
+                
+            }
+            return osszevont;
+         
+
+        }
+        console.log(lapit1([1,[2,3],4] ))//-> [1,2,3,4];
+
+        //reduce()-al:
+       
+
+
+        function lapit2(tomb) {
+            const lapitott=tomb.reduce((acc,tomb)=>acc.concat(tomb),[]);
+            return lapitott;
+           
+        }
+        console.log(lapit2([1,[2,3],4] ))//-> [1,2,3,4];
+        
+        
+        
+
+        /*
+            3) Második legnagyobb különböző szám
+
+            Írj függvényt, ami visszaadja a második legnagyobb különböző értéket.
+            Ha nincs, adjon vissza null-t.
+
+            function masodikLegnagyobb(t)
+            Példa: [5, 2, 5, 4] → 4, [7] → null
+            Hint: egyedi lista + rendezés; vagy egy menetben max és secondMax.
+        
+        */
+       //sort és new Set():
+
+
+       function masodikLegnagyobb(t){
+            const uniq = [...new Set(t)];
+            if (uniq.length < 2) return null;
+            uniq.sort((a,b) => b - a);   // csökkenő
+            return uniq[1];              // 2. legnagyobb
+        }
+        console.log(masodikLegnagyobb([5, 2, 5, 4]));//4
+        console.log(masodikLegnagyobb([7]));//null
+
+        //Math.max()-el:
+
+        function masodikLegnagyobb2(t){
+
+            if (t.length <2 ){return null};
+
+            const max= Math.max(...t); // 1️⃣ legnagyobb szám
+            const szurt=t.filter((szam)=>szam!==max ); // 2️⃣ eltávolítjuk az összes maxot
+
+            
+            if (szurt.length === 0) return null; //ha  minden szám ugyanaz
+
+
+            const secondmax=Math.max(...szurt); // 3️⃣ új legnagyobb → 2. legnagyobb eredetileg
+            return secondmax;
+           
+
+        }
+        console.log(masodikLegnagyobb2([5, 2, 5, 4]));//4
+        console.log(masodikLegnagyobb2([7]));//null
+        console.log(masodikLegnagyobb2([5, 5, 5]));//null
+
+        //Vagy így is lehet:
+        //const masodik = arr => arr.length < 2 ? null : Math.max(...arr.filter(x => x !== Math.max(...arr))) || null;
+
+      
+
+
+
+    </script>
+
+
+    
+</body>
+</html>

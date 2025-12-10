@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            3 JavaScript feladat
+                🧩 1️⃣ Páros számok átlaga
+
+                Írj függvényt, ami visszaadja a tömbben lévő páros számok átlagát!
+                Ha nincs páros szám, térjen vissza 0-val.
+
+                // 🧠 Példa:
+                    // parosAtlag([1,2,3,4,6]) → 4
+                function parosAtlag(tomb){
+                // ide írd a megoldást
+                }
+                console.log(parosAtlag([1,2,3,4,6])); // → 4
+                console.log(parosAtlag([1,3,5]));     // → 0
+
+
+            Tipp: filter() + reduce() + .length 
+       */
+
+       function parosAtlag(tomb){
+            // ide írd a megoldást
+            
+
+            const paros=tomb.filter((szam)=>szam %2==0);
+
+            if(!paros.length){return 0}
+
+            const osszeguk=paros.reduce((acc,curr)=>acc+curr,0);
+            const atlaguk= osszeguk/paros.length;
+            return atlaguk;
+        }
+        console.log(parosAtlag([1,2,3,4,6])); // → 4
+        console.log(parosAtlag([1,3,5]));     // → 0
+     
+
+
+
+        /* 🔡 2️⃣ Szöveg rövidítés
+
+         Készíts függvényt, ami a szavakat legfeljebb 3 betűre rövidíti, és ...-ot tesz a végére.
+
+            // 🧠 Példa:
+            // rovidit(["alma", "banán", "kiwi"]) → ["alm...", "ban...", "kiw..."]
+            function rovidit(szavak){
+                // ide írd a megoldást
+            }
+            console.log(rovidit(["alma", "banán", "kiwi"]));
+
+
+            💡 Tipp: map() + slice(0,3) + "..." 
+        */
+
+             function rovidit(szavak){
+                // ide írd a megoldást
+
+                const szavakrov=szavak.map((szo)=>szo.slice(0,3)+"...");//csak hozzáadom a srtinget
+                return szavakrov;
+            }
+            console.log(rovidit(["alma", "banán", "kiwi"]));
+
+        /*  🔢 3️⃣ Leggyakoribb szám keresése
+
+            Készíts függvényt, ami visszaadja a leggyakrabban előforduló számot a tömbből.
+            Ha több azonos gyakoriságú van, bármelyiket adhatja.
+
+            // 🧠 Példa:
+            // leggyakoribb([1,2,2,3,3,3,4,4]) → 3
+            function leggyakoribb(tomb){
+                // ide írd a megoldást
+            }
+            console.log(leggyakoribb([1,2,2,3,3,3,4,4]));
+
+
+            💡 Tipp: használj egy objektumot a gyakoriság tárolására + Math.max() a legnagyobb érték megtalálásához. 
+        */
+
+            function leggyakoribb(tomb){
+                // ide írd a megoldást
+
+              
+
+                const gyakorisag={};
+        
+                for (const szam of tomb) {
+                    gyakorisag[szam] = (gyakorisag[szam] ?? 0) + 1;
+                }
+                
+                
+                let maxSzam = null;
+                let maxDb = 0;
+
+                
+                for (const [kulcs, ertek] of Object.entries(gyakorisag)) {
+                    if (ertek > maxDb) {
+                        maxDb = ertek;
+                        maxSzam = Number(kulcs);
+                    }
+                }
+
+                return maxSzam;
+            }   
+            console.log(leggyakoribb([1,2,2,3,3,3,4,4]))// ✅ 3
+            console.log(leggyakoribb([5,5,1,1,2,2]));     // ✅ 5 (vagy 1 vagy 2 – bármelyik lehet)
+        
+        
+        
+     
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

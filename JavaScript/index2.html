@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //Plafonra húz (always up)
+
+        function felfeleKer(n){
+            return Math.ceil(n);
+
+        }
+        console.log(felfeleKer(4.4));//5
+
+        //Padlóra tesz  (always down)
+
+        function lefeleKer(n){
+            return Math.floor(n);
+        }
+        console.log(lefeleKer(4.4));//4
+
+        //Körbe kerekít (0.5 szabály)
+
+        function korbeKer(n){
+            return Math.round(n);
+        }
+        console.log(korbeKer(4.4));//4
+        console.log(korbeKer(4.5));//5
+
+        //Példák:
+
+
+        console.log("Pozitív számok:");
+        console.log("ceil(4.4) =", felfeleKer(4.4));   // 5
+        console.log("floor(4.4) =", lefeleKer(4.4));   // 4
+        console.log("round(4.4) =", korbeKer(4.4));    // 4
+        console.log("round(4.5) =", korbeKer(4.5));    // 5
+
+        console.log("\nNegatív számok:");
+        console.log("ceil(-4.4) =", felfeleKer(-4.4)); // -4 → a „plafon” közelebb van a nullához
+        console.log("floor(-4.4) =", lefeleKer(-4.4)); // -5 → a „padló” a kisebb, negatívabb egész
+        console.log("round(-4.4) =", korbeKer(-4.4));  // -4
+        console.log("round(-4.5) =", korbeKer(-4.5));  // -4 (felfelé 0 felé!)
+        console.log("round(-4.6) =", korbeKer(-4.6));  // -5
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

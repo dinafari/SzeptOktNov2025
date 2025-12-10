@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /* 🟨 3 JavaScript feladat
+        1) Medián számítása
+
+        Írj függvényt, ami egy számtömb mediánját adja vissza!
+
+        Páros elemszámnál a középső kettő átlaga.
+
+        Üres tömbnél térjen vissza null-lal.
+
+        function median(tomb){
+            // ide írd a megoldást
+        }
+
+        console.log(median([1, 3, 2]));        // → 2
+        console.log(median([1, 2, 3, 4]));     // → 2.5
+
+        console.log(median([]));               // → null
+
+
+💡 Tipp: másolat + sort((a,b)=>a-b), indexek óvatosan!
+*/
+
+
+
+        function median(tomb){
+        // ide írd a megoldást
+
+            if(tomb.length===0)return null;
+
+            const rendezett=tomb.slice().sort((a,b)=>a-b);
+            const kozepsoIndex=Math.floor(rendezett.length/2);
+
+            if(rendezett.length % 2 !==0){
+                return rendezett[kozepsoIndex];
+            }else{
+                return (rendezett[kozepsoIndex -1] + rendezett[kozepsoIndex]) /2;
+            }
+
+        }   
+
+        console.log(median([1, 3, 2]));        // → 2
+        console.log(median([1, 2, 3, 4]));     // → 2.5
+        console.log(median([])); //null
+
+        /*  
+    2)
+        2) Szavak száma mondatban (pont/vesző ignorálása)
+
+        Írj függvényt, ami visszaadja egy szövegben a szavak számát.
+
+        A több szóköz egymás után csak egynek számítson.
+
+        A végjelek/pont, vessző ne számítsanak külön szónak.
+
+        function szoDarab(szoveg){
+            // ide írd a megoldást
+        }
+
+        console.log(szoDarab("Szia, világ!  Ez egy teszt.")); // → 5
+        console.log(szoDarab("  Alma, körte,  barack. "));     // → 3
+        console.log(szoDarab(""));                             // → 0
+
+
+  Tipp: trim(), replace(/[.,!?;:]/g,''), split(/\s+/).
+        
+        
+        
+        
+*/
+
+
+        function szoDarab(szoveg){
+        // ide írd a megoldást
+            if (!szoveg.trim()) return 0;
+
+            const tisztitott = szoveg.replace(/[.,!?;:]/g, '').trim().split(/\s+/);
+            return tisztitott;
+            
+
+           
+        }
+
+        console.log(szoDarab("Szia, világ!  Ez egy teszt.")); // → 5
+        console.log(szoDarab("  Alma, körte,  barack. "));     // → 3
+        console.log(szoDarab(""));   // → 0
+        
+        
+    
+
+        /*  
+        
+            3) Különbség két tömb között (A \ B)
+
+            Készíts függvényt, ami visszaadja azokat az elemeket A-ból, 
+            amelyek nincsenek benne B-ben (sorrend megőrzése).
+
+            function kulonbseg(a, b){
+            // ide írd a megoldást
+            }
+
+            console.log(kulonbseg([1,2,3,4], [2,4]));     // → [1,3]
+            console.log(kulonbseg(["a","b","c"], ["b"])); // → ["a","c"]
+            console.log(kulonbseg([], [1]));              // → []
+
+        
+        
+        */
+        function kulonbseg(a, b){
+            // ide írd a megoldást
+           return a.filter(elem => !b.includes(elem));
+
+
+        }
+
+        console.log(kulonbseg([1,2,3,4], [2,4]));     // → [1,3]
+        console.log(kulonbseg(["a","b","c"], ["b"])); // → ["a","c"]
+        console.log(kulonbseg([], [1]));  //→ []
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,105 @@
+Mindegyik a tömb elemcseréje i–j index alapján feladatra épül.
+2-es feladat: Hibakezelés különböző módokon
+A te concat-os ötleted nagyon jó volt — most megmutatom, hogyan érdemes profi szinten gondolkodni. 🌟
+
+⭐ 1) Result pattern (Frontend + Backend fejlesztők kedvence)
+
+Nagyon tiszta, vizsgán is tökéletes!
+
+Itt a függvény mindig objektumot ad vissza, amiben vagy sikeres eredmény van, vagy hiba.
+
+function csere(tomb, i, j) {
+    if (i < 0 || j < 0 || i >= tomb.length || j >= tomb.length) {
+        return {
+            ok: false,
+            hiba: "Érvénytelen index!",
+            eredeti: tomb
+        };
+    }
+
+    const masolat = [...tomb];
+    const temp = masolat[i];
+    masolat[i] = masolat[j];
+    masolat[j] = temp;
+
+    return {
+        ok: true,
+        eredmeny: masolat
+    };
+}
+
+
+Előny:
+✔️ típuskövető
+✔️ könnyű használni
+✔️ sosem keveri a tömbbe a hibaüzenetet
+
+⭐ 2) Optional return
+
+Ha gond van → null, ha siker → új tömb.
+
+function csere(tomb, i, j) {
+    if (i < 0 || j < 0 || i >= tomb.length || j >= tomb.length) {
+        return null; 
+    }
+
+    const masolat = [...tomb];
+    const tmp = masolat[i];
+    masolat[i] = masolat[j];
+    masolat[j] = tmp;
+
+    return masolat;
+}
+
+
+Előny:
+✔️ nagyon rövid
+✔️ vizsgán elfogadják
+✔️ nem kever típusokat
+
+⭐ 3) Readonly eredeti → új tömb visszaadása
+
+Ezt sok tanár szereti:
+
+function csere(tomb, i, j) {
+    if (i < 0 || j < 0 || i >= tomb.length || j >= tomb.length) {
+        console.warn("Hibás index!");
+        return [...tomb]; // változatlan másolat
+    }
+
+    const ujtomb = [...tomb];
+    [ujtomb[i], ujtomb[j]] = [ujtomb[j], ujtomb[i]];
+    return ujtomb;
+}
+
+
+Előny:
+✔️ immutábilis
+✔️ nem módosítja az eredeti tömböt
+✔️ modern JS-es megoldás
+
+⭐ 4) A TE ötleted: a tömb végére hibajelzés
+
+Ez teljesen működőképes!
+Csak így a legszebben:
+
+function csere(tomb, i, j) {
+    if (i < 0 || j < 0 || i >= tomb.length || j >= tomb.length) {
+        return [...tomb, "Nincs ilyen index!"];
+    }
+
+    const masolat = [...tomb];
+    [masolat[i], masolat[j]] = [masolat[j], masolat[i]];
+    return masolat;
+}
+
+
+Előny:
+✔️ kreatív
+✔️ működik
+✔️ debug szempontból nagyon jó
+
+Hátrány:
+❗ a tömb típusát keveri (szám + string)
+
+De ettől még NEM rossz megoldás! 🥰

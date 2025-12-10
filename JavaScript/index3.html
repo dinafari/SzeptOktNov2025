@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*
+            1.Páros számok kiválogatása
+            Írj függvényt, ami visszaadja csak a páros számokat egy tömbből.
+        */
+
+        function kivalogatParos(tomb){
+
+            return tomb.filter((szam)=>szam%2===0);
+        }
+        console.log(kivalogatParos([1,2,3,6,9,8]));
+
+        /*
+            2.Szavak hossza
+            Adj vissza egy új tömböt, ami tartalmazza minden szó hosszát:
+            ["alma", "banán"] → [4, 5]
+        
+        
+        */
+
+
+        function szavakHossza(szavak){
+          return szavak.map((szo)=>szo.length);
+           
+
+        }
+        console.log(szavakHossza(["alma", "banán"])); 
+
+
+        /*
+            3.Legnagyobb szám keresése
+            Készíts függvényt, ami egy szám tömbből visszaadja a 
+            legnagyobb számot (Math.max nélkül).
+        */
+
+        function legnagyobbSzam(tomb2){
+            let max=tomb2[0];
+            //Metódussal így is lehet írni:
+            //const legnagyobbSzam = tomb2 => tomb2.reduce((max, n) => n > max ? n : max);
+
+            for(let i = 1; i< tomb2.length ;i++)
+            if(tomb2[i] > max)
+                max =tomb2[i];
+
+            return max;
+
+
+
+
+        }
+        console.log(legnagyobbSzam([3,8,9,5,6]));
+
+
+
+
+    </script>
+    
+</body>
+</html>

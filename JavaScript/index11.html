@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+    
+        /* 1.
+            1️⃣ Szavak kezdőbetűi
+            Írj függvényt, ami egy mondatból a minden szó első betűjét adja vissza nagybetűvel, egymás után fűzve.
+            Tipp: split(), map(), join()
+         
+        */    
+       
+        function elsoBetuk(mondat){
+            const szavak= mondat.toUpperCase().split(' ').map((szo)=>szo[0]).join('');
+            return szavak;
+        }
+        console.log(elsoBetuk("jó reggelt kívánok")); //→ "JRK"
+
+        /*
+        Alaposabb verzió:
+
+        2. function elsoBetuk(mondat){
+            return mondat
+                .trim()
+                .split(/\s+/)                         // minden whitespace
+                .filter(Boolean)                      // üresek ki
+                .map(szo => szo.charAt(0).toUpperCase())
+                .join('');
+        }
+        console.log(elsoBetuk("jó reggelt kívánok")); //→ "JRK"
+
+        
+    
+        */
+
+
+
+        /*
+            2.
+            Második legnagyobb szám
+
+            Írj függvényt, ami visszaadja a második legnagyobb különböző számot a tömbből.
+            Ha nincs, adjon vissza null-t.
+
+            masodikLegnagyobb([5, 2, 5, 4]) → 4  
+
+            masodikLegnagyobb([7]) → null
+
+            Tipp: egyedi értékek → new Set, majd rendezés.
+
+        */    
+
+        function masodikLegnagyobb(tomb){
+
+            if(tomb.length<2){return null};
+
+            const nemduplikalt= [...new Set(tomb)];
+            const legn=Math.max(...nemduplikalt);
+            const masodiklegn=nemduplikalt.filter((szam)=>szam!==legn);
+
+            return masodiklegn.length ? Math.max(...masodiklegn):null;// Biztos van olyan ,mert ha minden szám egyforma akkor nulla lesz.
+
+
+
+        }
+        console.log(masodikLegnagyobb([5, 2, 5, 4]));//→ 4  
+
+        console.log(masodikLegnagyobb([7]));//→ null
+
+        /*
+            3.3️⃣ Duplikátumok megszámlálása
+
+            Készíts függvényt, ami egy tömbből visszaadja,
+            melyik elem hányszor szerepel (objektumban).
+
+            duplikatumok([1,2,2,3,1,1]) → {1:3, 2:2, 3:1}
+
+            Tipp: forEach() vagy reduce() használható.
+          
+        */
+
+
+        function duplikatumok(tomb2){
+           const gyakorisag={};
+
+            for(const num of tomb2){
+                gyakorisag[num]=( gyakorisag[num] ?? 0) +1;
+                
+
+            }// visszatérünk objektumként a gyakorisággal:
+            return gyakorisag;
+        }
+        console.log(duplikatumok([1,2,2,3,1,1]));
+
+        //Nézzük meg foreach-el és reduce-al is. :)
+
+        /*
+            forEach-el :
+
+            function duplikatumokForEach(tomb){
+                const freq = {};
+                tomb.forEach(n => { freq[n] = (freq[n] ?? 0) + 1; });
+                return freq;
+            }
+
+            reduce:
+
+            function duplikatumokReduce(tomb){
+                return tomb.reduce((acc, n) => {
+                acc[n] = (acc[n] ?? 0) + 1;
+                    return acc;
+                }, {});
+            }
+
+
+
+        
+        
+        
+        
+        */
+
+
+        
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

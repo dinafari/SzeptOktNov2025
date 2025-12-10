@@ -1,0 +1,56 @@
+2.feladat: 1-szintű tömb-lapítás
+Magyarázat a for...of verziódhoz
+function lapit1(tomb) {
+  const osszevont = [];
+  for (const elem of tomb) {
+    if (Array.isArray(elem)) {
+      for (const belso of elem) osszevont.push(belso); // belső elemeket egyesével betoljuk
+    } else {
+      osszevont.push(elem); // sima elem megy direktben
+    }
+  }
+  return osszevont;
+}
+
+
+– Végigiterálsz az első szinten.
+– Ha találsz belső tömböt, csak egy szint mélyen jársz be, és betolod az elemeit.
+– Pont azt csinálja, amit a feladat kér (egyszintű flatten).
+
+A reduce+concat verziód is helyes
+function lapit2(tomb) {
+  return tomb.reduce((acc, elem) => acc.concat(elem), []);
+}
+
+
+– Az Array.prototype.concat úgy működik, hogy ha elem tömb, akkor a tartalmát hozzáfűzi egy szint mélyen → pont jó.
+
+
+
+
+
+
+3.feladat: Egyébb megoldása:
+Egy menetben (O(n), nincs extra memória)
+function masodikLegnagyobb2(t){
+  if (t.length < 2) return null;
+  let max = -Infinity, second = -Infinity;
+  for (const x of t) {
+    if (x > max) { second = max; max = x; }
+    else if (x < max && x > second) { second = x; }
+  }
+  return second === -Infinity ? null : second;
+}
+
+Bonusz apróságok
+
+A sort-os próbálkozásodban ez szerepelt:
+
+const csokk = t.sort((a,b)=>b-a,0);
+
+
+A 0 ott második paraméterként nem játszik: a sort csak a komparátort veszi.
+
+Ha a sort-ot használod, inkább másolj:
+
+const csokk = [...t].sort((a,b)=>b-a);

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*  
+            1️⃣ Számok négyzetei
+
+                Írj függvényt, ami egy tömb minden számát négyzetre emeli, és visszaadja az új tömböt.
+
+                Példa:
+
+                negyzetek([1,2,3]) → [1, 4, 9]
+        
+        
+        */
+
+        function negyzetek(tomb){
+            return tomb.map((szam)=>szam*szam);
+
+        }
+        console.log(negyzetek([1,2,3]));
+
+        /*
+            2️⃣ Szöveg első és utolsó karaktere
+
+            Írj függvényt, ami visszaad egy objektumot így:
+
+           "alváz"    →   { elso: 'a', utolso: 'z' }
+
+
+            Ha a szöveg üres → térjen vissza null-lal.
+
+            Példa:
+
+            karakterek("alma") → { elso: 'a', utolso: 'a' }
+        
+        
+        
+        
+        
+        */
+       function karakterek(string){
+        
+            if(string.length===0)return null;
+
+            const elso=string.charAt(0);
+            const utolso= string.charAt(string.length-1);
+       
+            return{
+                elso,
+                utolso
+            }
+        }
+        console.log(karakterek("alma"));
+        console.log(karakterek("alváz"));
+        console.log(karakterek("virsli"));
+        console.log(karakterek(""));
+
+
+        /*  
+        
+            3️⃣ Páros számok szűrése
+
+            Készíts függvényt, ami csak a páros számokat adja vissza egy tömbből.
+
+            Példa:
+
+            parosok([1,2,3,4,5,6]) → [2,4,6]
+
+
+    
+        */
+
+        function parosak(tomb2){
+            return tomb2.filter((szam)=>szam %2==0);
+        }
+        console.log(parosak([1,2,3,4,5,6]));
+
+    </script>
+    
+</body>
+</html>

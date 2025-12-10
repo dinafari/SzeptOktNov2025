@@ -1,0 +1,48 @@
+a for ciklust szépen ki lehet váltani pl. reduce() metódussal, ha az Object.entries() tömbjével dolgozol.
+
+🧩 Rövid, modern megoldás for-ciklus nélkül:
+function leggyakoribb(tomb) {
+  const gyakorisag = {};
+
+  for (const szam of tomb) {
+    gyakorisag[szam] = (gyakorisag[szam] ?? 0) + 1;
+  }
+
+  const [leggyakoribbSzam] = Object.entries(gyakorisag)
+    .reduce((max, akt) => (akt[1] > max[1] ? akt : max));
+
+  return Number(leggyakoribbSzam);
+}
+
+console.log(leggyakoribb([1,2,2,3,3,3,4,4])); // → 3
+
+💡 Magyarázat:
+
+Object.entries(gyakorisag) → [ ['1',1], ['2',2], ['3',3], ['4',2] ]
+
+reduce() végigmegy ezeken a párokon:
+
+(max, akt) => (akt[1] > max[1] ? akt : max)
+
+
+— ha az aktuális érték (akt[1]) nagyobb, mint a korábbi maximum,
+akkor lecseréli a maximumot.
+
+A végén megkapod a legtöbbször előforduló [kulcs, érték] párt.
+
+Az első elem [0] → maga a kulcs (a szám string formában),
+amit Number()-rel átalakítunk.
+
+🪄 Extra rövid, „egy soros” verzió:
+
+(ha már profi TypeScript/Javascript stílusban akarod látni 😄)
+
+const leggyakoribb = t => 
+  Number(Object.entries(t.reduce((g, n) => (g[n] = (g[n] ?? 0) + 1, g), {}))
+    .reduce((a, b) => b[1] > a[1] ? b : a)[0]);
+
+console.log(leggyakoribb([1,2,2,3,3,3,4,4])); // → 3
+
+
+👉 Ez ugyanazt csinálja, csak minden lépést egybe fűzve:
+reduce a gyakorisághoz + Object.entries() + reduce a maximumhoz.

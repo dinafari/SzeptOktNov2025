@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*
+            JavaScript – 3 könnyebb feladat
+            1️⃣ Pozitív számok darabszáma
+            Tipp: filter() + .length vagy sima for ciklus.
+            Ami visszaadja, hány pozitív szám (> 0) van a tömbben.
+
+        */
+
+           // Írj függvényt:
+
+            function pozitivDarab(tomb) {
+            // ide írd a megoldást
+                return tomb.filter((szam)=>szam >0).length;
+            }
+
+            //Példák:
+
+            console.log(pozitivDarab([1, -2, 3, 0, 5])); // → 3
+            console.log(pozitivDarab([-1, -2, 0]));      // → 0
+            console.log(pozitivDarab([]));               // → 0
+
+
+            
+
+        /*
+
+            2️⃣ Szavak kis/nagybetű normalizálása
+
+
+            
+            Ami egy szavakat tartalmazó tömbből új tömböt ad vissza, ahol:
+
+            minden szó kisbetűs, kivéve az első betűt, ami nagybetűs
+            (pl. „aLma” → „Alma”).
+            Tipp: toLowerCase(), szo[0].toUpperCase() + szo.slice(1).
+
+            Írj függvényt:
+        */
+
+            function normalizaltSzavak(szavak) {
+            // ide írd a megoldást
+                const szavakegyenként=szavak.map((szo)=>szo.toLowerCase());
+              
+                return szavakegyenként.map((szo) => szo[0].toUpperCase() + szo.slice(1));
+
+                /* vagy:
+                    const szavakegyenként=szavak.map((szo)=>szo.toLowerCase());
+                    return szavakegyenként.map(szo => szo.length === 0 ? "" : szo[0].toUpperCase() + szo.slice(1));
+                   
+                  
+                
+                */
+            }
+
+            //Példák:
+
+            console.log(normalizaltSzavak(["aLma", "BANÁN", "kÖrTe"]));
+            // → ["Alma", "Banán", "Körte"]
+
+            console.log(normalizaltSzavak([])); // → []
+
+
+       
+
+        /*
+
+            3️⃣ Csak stringek kiválogatása
+
+            //Tipp: typeof elem === "string" + filter().
+            //Ami egy heterogén tömbből csak a string típusú elemeket adja vissza.
+            Írj függvényt:
+        */
+
+            function csakStringek(tomb2) {
+            // ide írd a megoldást
+                const string=tomb2.filter((elem)=>typeof elem==='string');
+                return string;
+              
+            }
+            
+            //Példák:
+
+            console.log(csakStringek([1, "alma", true, "körte", null]));
+            // → ["alma", "körte"]
+
+            console.log(csakStringek([1, 2, false])); // → []
+
+
+       
+
+          /*  🧠 JavaScript – 2 nehezebb feladat
+            4️⃣ Számok csoportosítása páros/páratlan szerint
+
+
+            Ami egy objektummal tér vissza:
+            //Tipp: filter()-rel is megoldható, vagy for...of és két külön tömb.
+
+            {
+                paros: [...],
+                paratlan: [...]
+            }
+
+
+
+            Írj függvényt:
+        */
+
+            function csoportositParosParatlan(tomb3) {
+                // ide írd a megoldást
+                const paros=tomb3.filter((szam)=>szam % 2===0);
+                const paratlan=tomb3.filter((szam)=>szam % 2!==0);
+                return {
+                    paros,
+                    paratlan
+                }
+            }
+            //Példák:
+
+            console.log(csoportositParosParatlan([1,2,3,4,5,6]));
+            // → { paros:[2,4,6], paratlan:[1,3,5] }
+
+            console.log(csoportositParosParatlan([]));
+            // → { paros:[], paratlan:[] }
+
+
+           
+           /* 
+
+            5️⃣ Stringek hossza – statisztika
+
+            Írj függvényt:
+
+
+            Ami visszaad egy objektumot:
+
+            {
+            min: number | null,   // legrövidebb szó hossza
+            max: number | null,   // leghosszabb szó hossza
+            atlag: number         // átlagos hossz (ha üres → 0)
+            }           
+
+
+            Tipp:
+
+            először alakítsd át a szavakat hossztömbbé: map(szo => szo.length)
+
+            aztán Math.min, Math.max, reduce az átlaghoz.
+
+            Üres tömbnél külön kezeld!
+           
+        
+        */
+
+           function hosszStatisztika(szavak2) {
+                // ide írd a megoldást
+                const hosszusaguk=szavak2.map((szo)=>szo.length);
+                // 1) Üres tömb kezelése ELŐSZÖR
+                if(hosszusaguk.length===0 )return{min:null,max:null,atlag:0};
+
+                // 2) Csak itt számolunk min/max/átlagot
+                const min=Math.min(...hosszusaguk);
+                const max=Math.max(...hosszusaguk);
+                const atlag=hosszusaguk.reduce((acc,curr)=>acc+curr,0)/hosszusaguk.length;
+           
+               return {
+                    min:min ,
+                    max:max ,
+                    atlag:atlag
+               }
+            }
+
+           // Példák:
+
+            console.log(hosszStatisztika(["alma", "banán", "körte"]));
+            // pl. → { min:4, max:5, atlag:4.67 }
+
+            console.log(hosszStatisztika([]));
+            // → { min:null, max:null, atlag:0 }
+
+
+            
+
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

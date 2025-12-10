@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Készíts függvényt, ami egy névlistából eltávolítja a duplikált neveket.
+            ["Anna", "Béla", "Anna", "Csilla"] → ["Anna", "Béla", "Csilla"]
+
+        */
+
+        function eltavolitDuplikalt(lista){
+
+          //1 verzó: 
+          // return [...new Set(lista)]; duplikáciú kiszúrése új tisztított lista
+          //vagy:
+          return lista.filter((value,index)=>lista.indexOf(value)===index);
+         
+
+        }
+        console.log(eltavolitDuplikalt( ["Anna", "Béla", "Anna", "Csilla"]));
+       /*
+           2.Írj függvényt, ami kiszámolja egy szám tömb négyzeteinek összegét.
+            [1, 2, 3, 4] → 1² + 2² + 3² + 4² = 30
+        */
+
+        function tombnegyzOsszege(tomb){
+            const negyzet=tomb.map((szam)=>szam*szam);
+            return negyzet.reduce((acc,curr)=>acc+ curr);
+            //Vagy rövidebben így is lehet:
+            //const tombnegyzOsszege = (tomb) => tomb.reduce((acc, szam) => acc + szam * szam, 0);
+
+        }
+        console.log(tombnegyzOsszege([1, 2, 3, 4]));//30
+
+        /*
+            3.Készíts függvényt, ami minden szót a következő formára alakít:
+            "Frontend Developer" → "F.D."
+
+
+        */
+
+
+        function atalakit(szavak) {
+            return szavak
+            .split(" ")              // szétvágja a szavakat
+            .map(szo => szo[0].toUpperCase())  // csak az első betű kell minden szónál
+            .join(".") + ".";        // összefűzi pontokkal és lezárja ponttal
+        }
+
+        console.log(atalakit("Frontend Developer")); // F.D.
+        console.log(atalakit("Halihó itt a télapó")); // H.I.A.T.
+
+        //Ha mindent egy adott szövegre szeretnél átalakítani ,pl.:csak "F.D."-re:
+
+
+        function atalakitMindent(szavak2){
+        
+            return szavak2.replace(/.*/s,"F.D.");
+            //vagy replaceAll(szavak, "FD");
+            //vagy return "FD"; Ez a legegyszerűbb
+        }
+        console.log(atalakitMindent("Frontend Developer"));
+        console.log(atalakitMindent("Halihó itt a télapó"));
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

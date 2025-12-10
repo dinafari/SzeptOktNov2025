@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*    🟨 4 JavaScript feladat
+            1) Négyzetösszeg
+
+            Készíts függvényt, ami egy számtömb összes elemének a négyzetét összeadja.
+
+            Példa:
+
+            negyzetOsszeg([1,2,3]) → 1+4+9 = 14
+
+        */
+       function negyzetOsszeg(tomb){
+            return tomb.reduce((acc,szam)=>acc+szam*szam,0);
+       }
+       console.log(negyzetOsszeg([1,2,3]));// → 1+4+9 = 14
+
+        /*
+
+            2) Szavak kiválogatása hossz szerint
+
+            Add vissza azokat a szavakat, amelyek hossza 3-nál nagyobb.
+
+            Példa:
+
+            hossz3Felett(["a", "alma", "asztal"]) → ["alma","asztal"]
+
+
+        */    
+
+        function hossz3Felett(szavak){
+            return szavak.filter((szo)=>szo.length >=3);
+
+        }
+        console.log(hossz3Felett(["a", "alma", "asztal"]));//["alma","asztal"]
+
+        /*3) Objektum kulcsainak száma
+
+            Írj függvényt, ami visszaadja, hány kulcs van egy objektumban.
+
+            Példa:
+
+            kulcsDb({a:1, b:2, c:3})
+
+        */
+
+        function kulcsDb(obj){
+            return Object.keys(obj).length;
+        }
+        console.log(kulcsDb({a:1, b:2, c:3}));// → 3
+
+
+        /*
+            4) Legnagyobb páros szám (közepes)
+
+            Add vissza a tömb legnagyobb páros számát.
+            Ha nincs → null.
+
+            Példa:
+
+            legnagyobbParos([1,4,7,10]) → 10
+            legnagyobbParos([1,3,5]) → null
+
+
+        */
+
+        function legnagyobbParos(tomb2){
+            const paros=tomb2.filter((szam)=>szam %2===0);
+
+            if(paros.length===0 || tomb2.length===0){return null};
+
+            return Math.max(...paros);
+        }
+        console.log(legnagyobbParos([1,4,7,10])); //→ 10
+        console.log(legnagyobbParos([1,3,5])); //→ null
+
+    </script>
+    
+</body>
+</html>

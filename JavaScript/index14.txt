@@ -1,0 +1,52 @@
+3️⃣ Betűk gyakorisága csak az ábécé betűire:
+3️⃣ Betűk gyakorisága (a–z)
+
+A te megoldásod jó, csak egy apróság van.
+
+💡 A megoldásod:
+const tisztaszoveg = szoveg.toLowerCase().match(/[a-z]/g);
+const gyakorisag = {};
+for (betu of tisztaszoveg) {
+    gyakorisag[betu] = (gyakorisag[betu] || 0) + 1;
+}
+return gyakorisag;
+
+✔️ Ez hibátlan, csak tegyünk bele let-et:
+for (let betu of tisztaszoveg) { ... }
+
+❓ Mit jelent ez? (gyakorisag[betu] || 0) + 1
+
+Nagyon jó kérdés, nézzük:
+
+gyakorisag[betu] értéke	Kifejezés	Eredmény
+nincs ilyen kulcs	undefined || 0	0
+pl. egyszer már volt	1 || 0	1
+kétszer volt	2 || 0	2
+
+Tehát:
+
+gyakorisag[betu] = előző érték + 1
+
+
+👉 Ha nincs előző → 0-ról indul
+👉 Ha volt → növeljük eggyel
+
+Ez a leggyorsabb gyakoriság számláló JS-ben.
+
+❤️ Összekötés a példáddal:
+
+"Hello 123!!"
+
+h → 1
+e → 1
+l → 2
+o → 1
+
+
+A többi karakter (számok, !, szóköz) kiesik, mert a regex csak az a–z tartományt engedi:
+
+match(/[a-z]/g)
+
+
+
+

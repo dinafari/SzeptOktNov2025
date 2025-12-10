@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feladat6-gyakorló</title>
+</head>
+<body>
+    <script>
+
+        //1.Írj függvényt, ami összeadja a páros számokat egy tömbben!
+        //[1, 2, 3, 4] → 6
+
+        //metódussal
+
+        function parosOsszeg(tomb){
+          return  tomb.filter((szam)=>szam % 2 ===0).reduce((acc,szam)=>acc+szam,0);// kezdőérték 0!
+        }
+        console.log(parosOsszeg([1, 2, 3, 4]));//6
+
+
+        //for ciklussal:
+
+        function parosOsszeg2(tomb){
+          let parosok=[];
+        
+          
+            for(let i=0;i<tomb.length;i++){
+                if(tomb[i] % 2 ===0){
+                    parosok.push(tomb[i])
+
+                }
+                
+            }
+            return parosok.reduce((acc,szam)=>acc+szam).toString();//ha szövegként kell visszaadnod csak akkor!
+        }
+        console.log(parosOsszeg2([1, 2, 3, 4]));//6 itt szövegként érkezik meg
+
+        //forEach-el:
+
+
+        const elemek = [1, 2, 3, 4];
+        let osszeg = 0;
+
+        elemek.forEach(n => { if (n % 2 === 0) osszeg += n; });
+        console.log(osszeg);
+
+       
+       
+
+        //2.Készíts függvényt, ami egy szövegből visszaadja az összes szó első betűjét ilyen formában J R K !
+        //"Jó reggelt kívánok" → J R K
+
+        //  Most " "-tel joinolsz, így "J R K".
+
+        function elsoBetuk(szoveg){
+            return szoveg.split(" ").map((szo)=>szo[0].toUpperCase()).join(" ");
+        }
+        console.log(elsoBetuk("Jó reggelt kívánok"));//J R K
+
+
+        /*
+
+         Ha tényleg JRK egyben kell:
+
+
+          function elsoBetuk(szoveg){
+            return szoveg
+            .trim()
+            .split(/\s+/)                 // több szóköz is oké
+            .map(szo => szo[0]?.toUpperCase() ?? '')
+            .join('');                    // NINCS szóköz
+          }
+
+
+        
+      
+        
+        */
+
+
+        //3.Írj függvényt, ami visszaadja a legkisebb számot egy tömbből!
+        // [8, 3, 5, 1, 7] → 1
+
+        //Metódusos egyszerű
+
+        function legkisebb(tomb2){
+          return Math.min(...tomb2);
+          
+        }
+        console.log(legkisebb([8, 3, 5, 1, 7]));//1
+
+        //for ciklussal:
+
+
+
+        function legkisebb2(tomb2){
+
+          let min=tomb2[0];
+
+          for(let i=0; i< tomb2.length;i++)
+          if(tomb2[i]<min)
+            min=tomb2[i];
+          return min;
+
+        }
+        console.log(legkisebb2([8, 3, 5, 1, 7]));//1
+
+        //vagy reduce-al
+
+        
+        function legkisebb3(tomb2){
+          return tomb2.reduce((min,n)=>n < min ? n:min,Infinity);
+          
+        }
+        console.log(legkisebb3([8, 3, 5, 1, 7]));
+
+        function legkisebb4(tomb2){
+          const csokk=tomb2.sort((a,b)=>b-a);
+          const indexe=csokk.length-1;
+          return csokk[indexe];
+          
+          
+        }
+        console.log(legkisebb4([8, 3, 5, 1, 7]));//1
+
+        /*
+
+          De  a  sort módosítja az eredeti tömböt. Ha nem akarod bántani:
+
+
+          function legkisebb4(tomb2){
+            const masolat = [...tomb2].sort((a,b) => a - b); // növekvő, első elem a min
+            return masolat[0];
+          }
+        
+        
+        */
+
+
+       
+
+
+    </script>
+    
+</body>
+</html>

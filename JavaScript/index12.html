@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+            🟨 3 új JavaScript vizsgaszintű feladat
+            🧩 1️⃣ Pozitív számok összege
+
+            Készíts függvényt, ami egy tömbből csak a pozitív számokat adja össze.
+            Ha nincs pozitív szám, térjen vissza 0-val.
+        
+        
+        
+        */
+
+        function pozitivOsszeg(tomb){
+            // ide írd a megoldást
+
+
+            const pozitivsz=tomb.filter((szam)=>szam > 0);
+
+            if(pozitivsz.length===0) return 0; // ez lefedi az üres és negatív-only esetet
+          
+            return pozitivsz.reduce((acc,szam)=>acc+szam,0);
+
+            
+            
+        }
+
+        console.log(pozitivOsszeg([1, -2, 3, 4, -5])); // → 8
+        console.log(pozitivOsszeg([-2, -4, -6])); // → 0
+
+        /*   
+            📊 2️⃣ Szavak hossza – átlag
+
+            Készíts függvényt, ami egy szavakat tartalmazó tömbből visszaadja a szavak átlagos hosszát.
+            Az eredményt kerekítsd két tizedesre.
+        
+        */
+
+
+        function atlagosSzoHossz(szavak){
+            // ide írd a megoldást
+
+            if(!szavak.length) return 0;  // fontos!
+
+            const szavakhosszossz=szavak.map((szo)=>szo.length).reduce((acc,curr)=>acc+curr,0)
+            const atlaguk =szavakhosszossz /szavak.length;
+
+            return Number(atlaguk.toFixed(2));// két tizedes
+
+           
+
+
+        }
+
+        console.log(atlagosSzoHossz(["alma", "banán", "körte"])); // → 4.67
+        console.log(atlagosSzoHossz([])); // → "Üres tömb"
+
+
+        /*   
+
+            🔢 3️⃣ Páros és páratlan számlálás
+
+            Készíts függvényt, ami megszámolja, hány páros és hány páratlan szám van a tömbben.
+            Az eredményt egy objektumban add vissza.
+        
+        
+        
+        
+        */
+
+        function parosParatlanDb(tomb2){
+            // ide írd a megoldást
+
+            const paros=tomb2.filter((szam)=>szam %2===0).length;
+            const paratlan=tomb2.filter((szam)=>szam %2 !==0).length;
+            return {
+                paros:paros,
+                paratlan:paratlan
+            };
+
+         
+
+        }
+
+        console.log(parosParatlanDb([1,2,3,4,5,6]));// → { paros: 3, paratlan: 3 }
+        console.log(parosParatlanDb([]));  // → { paros: 0, paratlan: 0 }
+      
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

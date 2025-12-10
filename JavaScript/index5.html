@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript5</title>
+</head>
+<body>
+    <script>
+        //1.Készíts egy parosSzamok(tomb1) függvényt, ami visszaadja a páros számokat egy tömbből
+
+        function parosSzamok(tomb1){
+            return tomb1.filter((szam)=>szam % 2===0);
+        }
+        console.log(parosSzamok([1,2,3,5,6,8]));
+
+
+        function parosSzamok2(tomb1){
+
+            let parosak=[];
+
+          for (let i=0; i<tomb1.length;i++){
+            if (tomb1[i] % 2===0){
+               parosak.push(tomb1[i]);
+            }
+
+          }return parosak;
+        }
+        console.log(parosSzamok2([1,2,3,5,6,8]));
+
+        /*
+            Ez a hagyományos ciklusos kiválogatás:
+
+            létrehozol egy üres tömböt (parosak),
+
+            végigmész az eredetin,
+
+            és minden páros számot push()-szal beleteszel.
+
+            🧠 
+             így látod, hogyan felel meg a filter() egy for ciklusnak.
+        
+        
+        */
+
+        //2.Írj egy hosszLista(szavak) függvényt, ami visszaadja, hogy az egyes szavak hány karakterből állnak.
+
+        function hosszLista(szavak){
+
+            return szavak.map((szo)=>szo.length);
+        }
+        console.log(hosszLista(["alma","banán","citrom"]));
+
+        //Vagy ciklussal: 
+
+        function hosszLista2(szavak){
+            let hosszok = [];
+            for(let i = 0; i < szavak.length; i++){
+             hosszok.push(szavak[i].length);
+            }
+            return hosszok;
+        }
+        console.log(hosszLista2(["alma","banán","citrom"]));
+
+
+
+
+
+
+
+
+        //3.Készíts egy atlag(tomb2) függvényt, ami visszaadja a számok átlagát.
+
+        function atlag(tomb2){
+           const osszeguk= tomb2.reduce((acc,curr)=>acc+curr);
+           return osszeguk/tomb2.length;
+        }
+        console.log(atlag([4, 5, 3, 5, 4]));
+
+        //vagy:
+            function atlag2(tomb2){
+                let osszeg = 0;
+                for(let i = 0; i < tomb2.length; i++){
+                    osszeg += tomb2[i]; // minden lépésben hozzáadjuk az aktuális számot az összeghez
+                }
+                return osszeg / tomb2.length;
+            }
+
+            const jegyek = [4, 5, 3, 5, 4];
+            console.log("Az átlag:", atlag(jegyek));
+
+
+        
+
+
+    </script>
+    
+</body>
+</html>

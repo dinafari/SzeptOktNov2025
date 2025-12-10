@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1️⃣ Karakterek gyakorisága csak számokra
+
+            Készíts függvényt, ami megszámolja, hogy egy szövegben 
+            hányszor fordulnak elő számjegyek (0–9), és ezt egy objektumban adja vissza.
+            Ha nincs szám ("hello"), a függvény semmit nem ad vissza → undefined.
+            Feladat  szerint: ilyenkor üres objektumot ({}) várunk.
+
+            Példa:
+            console.log(szamGyak("a1b22c333")); // {1:1, 2:2, 3:3}
+            console.log(szamGyak("hello"));     // {}
+        
+        
+        */
+
+        function szamGyak(szoveg){
+            const talalatok = szoveg.match(/[0-9]/g);
+            const szamGyakorisag = {};
+
+            if (!talalatok) {
+                // nincs egyetlen számjegy sem
+                return {};
+            }
+
+            for (const szamjegy of talalatok) {
+                szamGyakorisag[szamjegy] = (szamGyakorisag[szamjegy] || 0) + 1;
+            }
+
+            return szamGyakorisag;
+        }
+
+        console.log(szamGyak("a1b22c333")); // {1:1, 2:2, 3:3}
+        console.log(szamGyak("hello"));     // {}
+
+       
+
+
+        /*2️⃣ Tömb elemcseréje index alapján
+
+            Készíts függvényt, ami kicseréli az i és j 
+            indexen lévő elemeket egy tömbben!
+            
+            
+            
+        */
+
+        function csere(tomb,i,j){
+
+            // ha bármelyik index érvénytelen → eredeti tömb
+            if (i < 0 || j < 0 || i >= tomb.length || j >= tomb.length){
+                return { hiba: "Nincs ilyen index!", eredeti: tomb };
+
+            }
+               
+         
+            // vagy :return tomb.concat("Nincs ilyen index!");
+            //.concat()Beleteszi a megjegyzést a tömbbe!
+            //vizsgán ne csináld mert új tömböt ad vissza ugyan, de 
+            // ez egy  heterogén tömb lesz mert számok mellé hirtelen szöveg kerül be
+            //és később gondot okozhat (reduce, sort, sum stb.)használata ha még tovább írod a kódot!.
+            
+
+
+            const indexcsere = tomb[i];//– elmentjük az i indexű elemet egy ideiglenes változóba
+            tomb[i]=tomb[j];//az i helyére tesszük a j-nél lévőt
+            tomb[j]=indexcsere;//a j helyére visszatesszük az eredeti i-t
+            return tomb;
+
+        }
+        console.log(csere([10,20,30,40], 1, 3));//→ [10, 40, 30, 20]
+        console.log(csere([1,2,3], 0, 5));//→ [ 2, 3,"Nincs ilyen index!"]
+
+
+
+
+        /*3️⃣ Leggyakoribb elem visszaadása (egész tömbből)
+
+            Írj függvényt, ami visszaadja a tömb leggyakrabban előforduló elemét!
+            Üres tömb → null. 
+        
+            objektum gyakoriságra
+
+            Object.entries() + reduce()
+        
+        
+        */
+
+        function leggyakoribbElem(tomb){
+            if (tomb.length === 0) return null;
+
+            const gyakorisag = {};
+
+            for (const elem of tomb) {
+                gyakorisag[elem] = (gyakorisag[elem] || 0) + 1;
+            }
+
+            // entries: pl. [ ['1',3], ['2',1], ... ]
+            const entries = Object.entries(gyakorisag);
+
+            const [leggyakoribbKulcs] = entries.reduce(
+                (maxPar, aktuPar) => aktuPar[1] > maxPar[1] ? aktuPar : maxPar
+            );
+
+            // Object.entries kulcsai stringek → ha számokat adtál be, átalakíthatod:
+            if (typeof tomb[0] === "number") {
+                return Number(leggyakoribbKulcs);
+            }
+
+            return leggyakoribbKulcs;
+        }
+
+        console.log(leggyakoribbElem([1,1,2,3,3,3]));     // 3
+        console.log(leggyakoribbElem(["a","b","b","c"])); // "b"
+
+
+
+
+
+
+
+
+
+    
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*
+        
+            1.Leghosszabb szó
+
+            Írj függvényt, ami visszaadja a leghosszabb szót egy mondatból!
+        */
+
+        function leghosszabbSzo(szoveg){
+           
+
+            
+            return szoveg.split(' ').sort ((a,b)=>b.length-a.length)[0];
+            
+
+        }
+        console.log(leghosszabbSzo("Ez lehet talán a leghosszabszó."));
+
+        //vagy:
+
+        
+        function leghosszabbSzo2(szoveg){
+           
+
+            
+            return szoveg.split(' ').reduce((max,szo)=>szo.length > max.length ? szo :max);
+            
+
+        }
+        console.log(leghosszabbSzo2("A cica gyorsan fut a mezőn"));
+
+        /*
+           
+
+            2.Számok közül a 3-mal oszthatók összege
+
+            Írj függvényt, ami kiszámolja a 3-mal osztható számok összegét!
+        */
+
+        function harommalOszthatoOsszeg(tomb){
+
+            const oszthatoharom=tomb.filter((szam)=>szam % 3===0);
+            return oszthatoharom.reduce((acc,curr)=>acc+curr,0);
+
+        }
+        console.log(harommalOszthatoOsszeg([3, 4, 9, 10, 12]));
+
+        /*
+            3.Betűk gyakorisága
+
+            Írj függvényt, ami megszámolja, melyik betű hányszor fordul elő a szövegben!
+            Eredményt objektumként add vissza.
+            
+        */
+
+
+        function betuGyakorisag(szoveg){
+            const gyakorisag={}
+
+            for(const char of szoveg){
+                gyakorisag[char]=( gyakorisag[char] |0) +1;
+                
+
+            }// (1) érték párokat ad vissza (ha például táblázatba akarod tenni)
+            return Object.entries(gyakorisag);
+
+            // (2) Csak objektumot ad vissza:
+            //return gyakorisag;
+            
+
+        }
+        console.log(betuGyakorisag("alma"))//→ { a: 2, l: 1, m: 1 }
+        
+
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*      
+            🟨 3 JavaScript feladat
+
+            1️⃣ Palindrom ellenőrzés (szóközök és kis/nagybetű figyelmen kívül)
+
+            Írj egy függvényt, ami eldönti, hogy egy szöveg palindrom-e, ha:
+
+            nem számítanak a szóközök,
+
+            nem számít a kis/nagybetű.
+        
+        
+        */
+        function palindromE(szoveg){
+            // ide írd a megoldást
+
+           const szovegTisztitott=szoveg.replace(/\s/g,'').toLowerCase();//replace(/\s/g, '') → kiveszi az összes whitespace-et (szóköz, tab stb.).
+             
+
+            const forditott= szovegTisztitott.split('').reverse().join('');
+      
+            
+            return szovegTisztitott === forditott;
+
+        } 
+
+        console.log(palindromE("Géza kék az ég"));      // true
+        console.log(palindromE("Indul a görög aludni"));// true
+        console.log(palindromE("alma"));                // false
+
+
+        /*
+            A  split(/\s+/) ezzel azért  nem műkodott, mert:
+
+            szoveg.split(/\s+/) → tömböt ad vissza, pl.:
+            "Géza kék az ég" → ["Géza", "kék", "az", "ég"]
+
+            és egy tömbön nem tudsz közvetlenül toLowerCase()-t hívni, mert az string metódus.
+        
+        
+        
+        */
+
+
+        /*   2️⃣ Falsy értékek kiszűrése egy tömbből
+
+            Készíts egy függvényt, ami egy tömbből eltávolít minden „falsy” értéket, és visszaadja az új tömböt.
+
+            Falsy értékek: 0, "", null, undefined, NaN, false.
+         */
+     
+
+
+        function tisztitFalsy(tomb){
+
+
+            // ide írd a megoldást
+            const ujtomb=tomb.filter(Boolean);// Vagy : return tomb.filter(ertek => Boolean(ertek)); A Boolean függvény minden elemet true/false-ra alakít:ami tehát nem érték vagyis szám az kiszűrődik
+            return ujtomb;
+
+
+        }
+
+        console.log(tisztitFalsy([0, 1, "", "alma", null, undefined, false, 42, NaN]));
+        // → [1, "alma", 42]
+
+        /*  
+            3️⃣ Szavak rendezése hossz szerint
+
+            Készíts függvényt, ami egy szavakból álló tömböt 
+            hossz szerint növekvő sorrendbe rendezi.
+            Ha két szó hossza azonos, maradhatnak az eredeti sorrendjükben
+            (nem kell stabil rendezésen gondolkodnod most 😉).
+
+        
+        */
+
+
+        function rendezHosszSzerint(szavak){
+            // ide írd a megoldást
+
+            const novekvohossz=szavak.sort((a,b)=>a.length-b.length,0);
+            //Ha fontos lenne, hogy ne módosítsd az eredeti tömböt, akkor így: 
+            //  return [...szavak].sort((a, b) => a.length - b.length);
+            return novekvohossz;
+
+
+
+        }
+
+        console.log(rendezHosszSzerint(["alma", "banán", "kiwi", "szilva"]));
+        // → pl. ["kiwi", "alma", "banán", "szilva"]
+
+
+
+      
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

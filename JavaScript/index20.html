@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*  
+            🟨 3 könnyebb JavaScript feladat
+            1️⃣ Szavak szűrése hossz alapján
+
+            Írj függvényt, ami csak azokat a szavakat adja vissza, amelyek hossza legalább minHossz.
+
+        */
+
+            function hosszabbSzavak(szavak, minHossz) {
+                // ide írd a megoldást
+
+                return szavak.filter((szo)=>szo.length>=minHossz);
+
+            }
+            //Példák:
+            console.log(hosszabbSzavak(["alma", "banán", "körte"], 5)); // → ["banán","körte"]
+            console.log(hosszabbSzavak(["pi", "fa", "asztal"], 4));    // → ["asztal"]
+
+        /*2️⃣ Legkisebb szám tömbből
+
+            Írj függvényt, ami visszaadja a legkisebb számot a tömbből.
+            Üres tömb esetén térjen vissza null-lal.
+        */
+
+            function legkisebb(tomb) {
+                // ide írd a megoldást
+                if(tomb.length===0)return null;
+                
+                const min=Math.min(...tomb);
+               
+                return min;
+            }
+            //Példák:
+            console.log(legkisebb([4, 2, 8, 1, 9])); // → 1
+            console.log(legkisebb([]));              // → null
+
+           /* 3️⃣ Szavak nagy kezdőbetűvel
+
+            Készíts függvényt, ami minden szó első betűjét nagybetűssé teszi, a többit kisbetűsre.
+        */
+
+            function kapitalizalSzavak(szavak) {
+            // ide írd a megoldást
+               
+            
+                const kicsive=szavak.map((szo)=>szo.toLowerCase());
+                const elsonagybetu=kicsive.map((szo)=>szo[0].toUpperCase()+szo.slice(1));
+                //Vagy:const elsonagybetu=kicsive.map((szo)=>szo.charAt(0).toUpperCase()+szo.slice(1));
+                return elsonagybetu; 
+
+              
+            }
+            //Példa:
+
+            console.log(kapitalizalSzavak(["aLma", "BANÁN", "körTe"]));
+            // → ["Alma", "Banán", "Körte"]
+
+
+            //💡 Tipp: szo[0].toUpperCase() + szo.slice(1).toLowerCase()
+
+            //🧠 2 kicsit nehezebb JavaScript feladat
+        /*4️⃣ Tömb lapítása 1 szintig (flat() nélkül)
+
+            Írj függvényt, ami legfeljebb 1 szint mély beágyazott tömböt lapít ki.
+        */
+
+            function lapit1Szint(tomb) {
+                // ide írd a megoldást
+                const lapitotttomb=[];
+                if(tomb.length===0)return [];
+
+                for(const elem of tomb){
+                    if(Array.isArray(elem)){
+                        for(const belsoElem of elem){
+                            lapitotttomb.push(belsoElem);
+                        }
+                    }else{
+                        lapitotttomb.push(elem);
+                    }
+           
+                }
+                return lapitotttomb;
+            }
+            //Példák:
+         
+            console.log(lapit1Szint([1, [2, 3], 4]));       // → [1,2,3,4]
+            console.log(lapit1Szint([[1,2], [3], 4, 5]));   // → [1,2,3,4,5]
+            console.log(lapit1Szint([]));  // → []
+
+            // Vagy:
+
+            function lapit1Szint2(tomb2){
+                
+                const egyesit =tomb2.reduce((Array,elem)=>Array.concat(elem),[]);
+            
+                //Ez azt jelenti,hogy ha az elem egy tömb, 
+                // akkor annak az elemeit is hozzáadja a visszatérési értékhez. 
+                return egyesit;
+
+            }
+            console.log(lapit1Szint2([1, [2, 3], 4]));       // → [1,2,3,4]
+            console.log(lapit1Szint2([[1,2], [3], 4, 5]));   // → [1,2,3,4,5]
+            console.log(lapit1Szint2([]));  // → []
+
+
+            /*💡 Tipp: for...of + Array.isArray() vagy reduce + concat
+
+            5️⃣ Vásárlások – összes költés vevőnként
+
+            Van egy vásárláslista, ahol minden elem:
+
+            // { nev: string, osszeg: number }
+
+
+            Írj függvényt, ami visszaad egy objektumot, ahol:
+
+            a kulcs a vevő neve (nev)
+
+            az érték az adott vevő összes költése
+            
+        */
+
+            function osszKoltve(lista) {
+                // ide írd a megoldást
+                const eredmeny={};
+                for(const vasarlas of lista){
+                    eredmeny[vasarlas.nev]=(eredmeny[vasarlas.nev] || 0 )+ vasarlas.osszeg;
+                    //Itt azért tudja az osszeg kifejezésről ,hogy össze kell adni az összegüket.
+                    //Mert ha már létezik az eredmeny[vasarlas.nev], akkor az egy szám,
+                    // és hozzáadjuk a jelenlegi vasarlas.osszeg-et.
+
+
+
+                }
+                return eredmeny;
+
+
+                
+
+
+            }
+            //Példa:
+
+            const vasarlasok = [
+                { nev: "Anna", osszeg: 2000 },
+                { nev: "Béla", osszeg: 1500 },
+                { nev: "Anna", osszeg: 3000 },
+            ];
+
+            console.log(osszKoltve(vasarlasok));
+            // → { Anna: 5000, Béla: 1500 }
+
+
+            //💡 Tipp: for...of vagy reduce, és egy sima {} objektum, pl.:
+
+            //eredmeny[nev] = (eredmeny[nev] || 0) + osszeg;
+        
+        
+        
+        
+        
+        
+
+
+
+
+    </script>
+    
+</body>
+</html>
