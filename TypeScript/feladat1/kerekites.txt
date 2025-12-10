@@ -1,0 +1,27 @@
+| Bemenet  | `Math.ceil(x)` → **felfelé** | `Math.floor(x)` → **lefelé** | `Math.round(x)` → **szokásos** |
+| -------- | ---------------------------- | ---------------------------- | ------------------------------ |
+| **4.1**  | 5                            | 4                            | 4                              |
+| **4.4**  | 5                            | 4                            | 4                              |
+| **4.5**  | 5                            | 4                            | 5                              |
+| **4.6**  | 5                            | 4                            | 5                              |
+| **4.9**  | 5                            | 4                            | 5                              |
+| **5.0**  | 5                            | 5                            | 5                              |
+| **-4.1** | -4 (felfelé = nagyobb szám)  | -5                           | -4                             |
+| **-4.5** | -4                           | -5                           | -4                             |
+| **-4.9** | -4                           | -5                           | -5                             |
+
+
+✨ Rövid magyarázat
+
+ceil: mindig a legkisebb nagyobb vagy egyenlő egész számra ugrik → felfelé a számegyenesen.
+
+floor: mindig a legnagyobb kisebb vagy egyenlő egész számra ugrik → lefelé a számegyenesen.
+
+round: a matematikai kerekítést használja → 0.5-től felfelé, alatta lefelé.
+
+💡 Érdekesség: a negatív számoknál látszik igazán a különbség, mert a „felfelé” itt a nagyobb számot jelenti, tehát pl. ceil(-4.9) = -4.
+
+Ezért szokták mondani, hogy a ceil „mindig a plafonra húz”, a floor pedig „mindig a padlóra tesz” — a számegyenesen függetlenül attól, hogy pozitív vagy negatív az érték.
+
+
+A JavaScript Math.round() mindig felfelé kerekít 0.5-nél.

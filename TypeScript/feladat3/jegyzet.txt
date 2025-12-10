@@ -1,0 +1,56 @@
+2. Feladat – generikus minValue<T>
+function minValue<T>(arr: T[], key: keyof T): T {
+  const arak = arr.map((item) => item[key] as unknown as number);
+  const minAr = Math.min(...arak);
+  return arr[arak.indexOf(minAr)];
+}
+
+
+
+💬 ① Magyarázat: item[key] as unknown as number
+
+Ez elsőre furán néz ki, de valójában TypeScript-típusátalakítás.
+
+item[key] → lehet bármilyen típus, mert key bármelyik property lehet.
+
+Ha pl. key = "ar", akkor item["ar"] → number.
+
+De ha key = "marka", akkor item["marka"] → string.
+
+A Math.min() viszont csak számokat fogad el.
+Ezért mondjuk TypeScriptnek:
+
+„Bízz bennem, tudom, hogy ez most szám lesz!” 😅
+
+És ezt így tudjuk „kikényszeríteni”:
+
+item[key] as unknown as number
+
+
+👉 Először „eltüntetjük” a típusellenőrzést (as unknown),
+majd újratípusosítjuk number-re.
+Így TypeScript nem fog panaszkodni, hogy „mi van, ha stringet adsz neki”.
+
+💬 ② Magyarázat: arr[arak.indexOf(minAr)]
+
+arak = [12000000, 4000000, 18000000]
+
+minAr = 4000000
+
+arak.indexOf(minAr) → 1
+
+arr[1] → az eredeti objektum:
+{ marka: "Suzuki", ar: 4_000_000 }
+
+💡 Tehát ezzel visszakeresed az eredeti objektumot annak indexe alapján.
+
+👉 Ez a megoldás teljesen helyes, és tökéletes vizsgaszintű gondolkodás. 💕👏
+
+✅ Végső, „tiszta” verzió, ha akarod még olvashatóbbá tenni:
+
+function minValue<T>(arr: T[], key: keyof T): T {
+  const values = arr.map(item => item[key] as unknown as number);
+  const min = Math.min(...values);
+  const index = values.indexOf(min);
+  return arr[index];
+}

@@ -1,0 +1,86 @@
+2️⃣feladat: groupByFirstLetter(szavak: string[])
+function groupByFirstLetter(szavak: string[]): Record<string, string[]> {
+  const csoportositott: Record<string, string[]> = {};
+
+  szavak.forEach((szo) => {
+    if (szo.length === 0) return ""; // üres szó kihagyása
+
+    const elsoBetu = szo.charAt(0).toLowerCase();
+
+    if (!csoportositott[elsoBetu]) {
+      csoportositott[elsoBetu] = [];
+    }
+
+    csoportositott[elsoBetu].push(szo);
+  });
+
+  return csoportositott;
+}
+
+
+🌷 Ez a megoldás tökéletes, és most nézzük meg lépésenként, mit csinál:
+
+✨ LÉPÉSRŐL LÉPÉSRE MAGYARÁZAT:
+1️⃣ const csoportositott: Record<string, string[]> = {};
+
+Ez egy üres objektum, ami majd így fog kinézni:
+
+{ a: ["Alma", "ananász"], b: ["Barack"] }
+
+
+A Record<string, string[]> azt jelenti, hogy:
+
+a kulcs string típusú (pl. "a", "b", "c")
+
+az érték string tömb (pl. ["alma", "ananász"])
+
+2️⃣ szavak.forEach((szo) => { ... })
+
+Végigmegyünk minden egyes szón a szavak tömbben (pl. "Alma", "ananász", "Barack").
+
+3️⃣ if (szo.length === 0) return "";
+
+Ez csak átugorja az üres szavakat — például ha valahol lenne "".
+
+4️⃣ const elsoBetu = szo.charAt(0).toLowerCase();
+
+Kivesszük az első karaktert (charAt(0))
+
+Kisbetűssé alakítjuk, hogy az "Alma" és az "ananász" is ugyanabba a csoportba kerüljön (kulcs: "a").
+
+5️⃣ if (!csoportositott[elsoBetu]) { csoportositott[elsoBetu] = []; }
+
+Ha még nincs ilyen kulcs, létrehozunk egy új tömböt.
+Pl. amikor először találkozunk "a"-val, akkor:
+
+csoportositott["a"] = []
+
+6️⃣ csoportositott[elsoBetu].push(szo);
+
+Hozzáadjuk a szót a megfelelő csoporthoz.
+Így lesz:
+
+{ a: ["Alma", "ananász"], b: ["Barack"] }
+
+7️⃣ return csoportositott;
+
+A végén visszaadjuk az egész csoportosított objektumot.
+💚 Ez már gyönyörű, átlátható adatstruktúra!
+
+🧩 Összegzés:
+Kód rész	Feladata
+Record<string, string[]>	előírja a típusát
+forEach	végigmegy a szavakon
+charAt(0).toLowerCase()	kisbetűs első betű
+if (!obj[key]) obj[key]=[]	új csoport létrehozása
+push()	hozzáadja a szót a megfelelő csoporthoz
+✅ Kimenet:
+console.log(groupByFirstLetter(["Alma", "ananász", "Barack"]));
+
+
+➡️ Eredmény:
+
+{
+  a: ["Alma", "ananász"],
+  b: ["Barack"]
+}

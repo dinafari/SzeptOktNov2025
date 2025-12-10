@@ -1,0 +1,55 @@
+function szamgyakorisag(input: number | number[]): Record<number, number> {
+  const eredm: Record<number, number> = {};
+  
+  // 1️⃣ Ha számot kap, alakítjuk stringgé, hogy karakterenként bejárhassuk
+  const tomb: number[] = 
+    typeof input === "number"
+      ? input.toString().split("").map(Number)
+      : input; // ha már eleve tömb, nem alakítjuk át
+  
+  // 2️⃣ Végigmegyünk az elemek között, és számoljuk, hányszor fordulnak elő
+  for (const szam of tomb) {
+    eredm[szam] = (eredm[szam] || 0) + 1;
+  }
+
+  return eredm;
+}
+
+// 🔹 Tesztesetek
+console.log(szamgyakorisag(12344));        // ✅ {1:1, 2:1, 3:1, 4:2}
+console.log(szamgyakorisag([1,2,2,3,4,4])); // ✅ {1:1, 2:2, 3:1, 4:2}
+console.log(szamgyakorisag([]));            // ✅ {}
+
+
+
+🧠 Magyarázat:
+🔸 1. typeof input === "number"
+
+így tudjuk meg, hogy számot kaptunk, vagy tömböt;
+
+ha szám → stringgé alakítjuk, majd .split("") karaktertömbbé, és .map(Number)-rel visszaalakítjuk számokká.
+
+🔸 2. Ha eleve number[], akkor egyszerűen bejárjuk és számolunk.
+🔸 3. (eredm[szam] || 0) + 1
+
+ha már volt ilyen kulcs, növeli 1-gyel,
+
+ha még nem volt, akkor 0-ról indul.
+
+
+
+💡 Kiegészítés (ha szeretnéd extra szépen kiíratni):
+const eredmeny = szamgyakorisag(12344);
+console.log("Számgyakoriság:");
+for (const [szam, db] of Object.entries(eredmeny)) {
+  console.log(`${szam} → ${db} db`);
+}
+
+
+👉 Kimenet:
+
+Számgyakoriság:
+1 → 1 db
+2 → 1 db
+3 → 1 db
+4 → 2 db

@@ -1,0 +1,78 @@
+2.feladat feladat ciklusos magyarázata
+
+
+1️⃣ A változó neve: elsoNemSpaceKesz
+
+A neve azt jelenti:
+
+„az első nem szóköz karakter már készen van-e”
+
+Ez egy logikai (boolean) változó — tehát csak két értéke lehet:
+
+false → még nem történt meg,
+
+true → megtörtént.
+
+🌱 2️⃣ A let elsoNemSpaceKesz = false;
+
+Ez a kezdőérték.
+Ezzel azt mondjuk a programnak:
+
+„Még nem találtam meg az első betűt, amit nagybetűssé kell tennem.”
+
+Tehát induláskor a ciklus még nem tudja, hol van az első betű — csak elkezdi olvasni a karaktereket sorban.
+Amíg false, addig azt jelenti: „még nem csináltam meg az első nagybetűt”.
+
+🌼 3️⃣ A elsoNemSpaceKesz = true;
+
+Ez akkor fut le, amikor megtaláltuk az első betűt (azaz ami nem szóköz).
+
+Amikor a feltétel teljesül (például találunk egy "a" betűt a " alma" szövegben):
+
+if (!elsoNemSpaceKesz && ch !== " ") {
+  eredmeny += ch.toUpperCase();  // nagybetűvé alakítjuk
+  elsoNemSpaceKesz = true;       // jelezzük, hogy megcsináltuk
+}
+
+
+💡 Ez a sor mondja a programnak:
+
+„Megtaláltam az első betűt, elkészítettem nagybetűsre — innentől ne csináld újra!”
+
+🧠 4️⃣ Miért kell ez a logikai jelző?
+
+Ha nem lenne ez a true/false figyelő,
+akkor minden nem szóköz karaktert nagybetűsre alakítana a ciklus! 😅
+
+De mi csak az első betűt akarjuk nagybetűsíteni.
+Ezért figyelnünk kell, hogy:
+
+először false → még nincs meg,
+
+amikor megvan → true lesz, és onnantól a ciklus már kihagyja a többi betűt.
+
+🌸 5️⃣ Összefoglalva
+Kód	Jelentés
+let elsoNemSpaceKesz = false;	induláskor: még nem csináltuk meg a nagybetűt
+if (!elsoNemSpaceKesz && ch !== " ")	ha még nem volt nagybetű és ez most betű, csináljuk
+elsoNemSpaceKesz = true;	most már megvan, ne csináld többször
+🎁 Példa:
+const szo = " alma";
+let eredmeny = "";
+let elsoNemSpaceKesz = false;
+
+for (let i = 0; i < szo.length; i++) {
+  const ch = szo[i];
+  if (!elsoNemSpaceKesz && ch !== " ") {
+    eredmeny += ch.toUpperCase(); // itt lesz A
+    elsoNemSpaceKesz = true;      // most már igaz
+  } else {
+    eredmeny += ch;               // többi marad ugyanaz
+  }
+}
+console.log(eredmeny); // " Alma"
+
+
+💎 Az első betűből „A” lett,
+a szóköz megmaradt,
+és a többi kisbetű is változatlan maradt. ✅

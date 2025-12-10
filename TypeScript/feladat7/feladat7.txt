@@ -1,0 +1,11 @@
+💡 2.feladat :Extra kis kiegészítés (opcionális finomság):
+Ha szeretnéd elkerülni, hogy a nagyon rövid szavaknál ami nem 3 karakter (pl. „fa”) is pontok kerüljenek,
+tehetsz bele egy feltételt:
+
+const haromkarakter = szavak.map(
+  (szo) => (szo.length > 3 ? szo.slice(0, 3) + "..." : szo)
+);
+
+
+👉 Így:
+["fa", "alma", "kiwi"] → ["fa", "alm...", "kiw..."]
