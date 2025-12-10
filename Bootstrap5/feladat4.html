@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- 
+
+
+        🧱 Összetettebb Bootstrap 5 feladat
+
+        „Mini tanfolyam-katalógus + Navbar + Modal + Badge-ek”
+
+        Készíts egy Bootstrap 5 alapú oldalt, ami egy tanfolyam-katalógust jelenít meg:
+
+        Követelmények:
+
+        Navbar (felül, sticky-top):
+
+        Bal oldalt: logó/szöveg: Tanfolyam Katalógus
+
+        Jobb oldalt menüpontok:
+
+        Kezdőlap – görgessen az oldal tetejére
+
+        Tanfolyamok – görgessen a kártyák szekcióhoz
+
+        Kapcsolat – görgessen a lábléc/kapcsolat blokkhoz
+
+
+
+
+        Hero szekció (Kezdőlap):
+
+
+        Középen egy nagy címsor: Fejleszd a tudásod!
+
+
+
+
+
+        Alatta rövid leírás (1–2 sor).
+
+        Egy nagy gomb: Tanfolyamok megtekintése – kattintásra a tanfolyam szekcióhoz görget (anchor link).
+
+
+
+
+
+        Tanfolyamkártyák (kártyarács, container-ben):
+
+        Bootstrap grid: mobilon 1 oszlop (col-12), nagyobb képernyőn 3 oszlop (col-md-4).
+
+        Legalább 3 tanfolyamkártya, mindegyik:
+
+        .card komponens
+
+        Kép felül (placeholder vagy saját kép)
+
+        Cím (pl. JavaScript Alapok)
+
+        Rövid leírás (2–3 sor)
+
+        Ár nagyobb betűvel
+
+        Badge a nehézségnek:
+
+        Kezdő – zöld (bg-success)
+
+        Középhaladó – kék (bg-primary)
+
+        Haladó – piros (bg-danger)
+
+        Láb részben gomb: Részletek
+
+        Ez nyisson meg egy Bootstrap Modal-t.
+
+
+
+
+        Modal:
+
+        Egy közös modal (nem kell mindegyik kártyához külön).
+
+        Cím: Tanfolyam részletek
+
+        Szöveg: pár sor magyarázat + „Jelentkezéshez írj e-mailt: valami@pelda.hu
+        ”.
+
+        Bezárás gomb: Bezár
+
+        Kapcsolat / lábléc:
+
+        Sötét háttér, világos szöveg.
+
+        Tartalmazzon e-mailt és egy dummy telefonszámot.
+
+      💡 Használj minél több Bootstrap osztályt 
+      (container, row, col, card, badge, btn, navbar, modal), inline stílus csak minimálisan, ha muszáj.
+    
+
+    
+    !-->
+      
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">Tanfolyam Katalógus</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#hero">Kezdőlap</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tanfolyamok">Tanfolyamok</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#kapcsolat">Kapcsolat</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="py-5 bg-light">
+    <div class="container text-center">
+      <h1 class="display-5 mb-3">Fejleszd a tudásod!</h1>
+      <p class="lead">Válassz modern, gyakorlatorientált tanfolyamaink közül, és építsd fel a saját fejlesztői karriered.</p>
+      <a href="#tanfolyamok" class="btn btn-primary btn-lg mt-3">Tanfolyamok megtekintése</a>
+    </div>
+  </section>
+
+  <!-- TANFOLYAMOK -->
+  <section id="tanfolyamok" class="container my-5">
+    <h2 class="text-center mb-4">Tanfolyamok</h2>
+    <div class="row g-4">
+
+      <!-- Kártya 1 -->
+      <div class="col-12 col-md-4">
+        <div class="card h-100 text-center">
+          <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="JavaScript Alapok">
+          <div class="card-body">
+            <h5 class="card-title">JavaScript Alapok</h5>
+            <p class="card-text">Ismerkedj meg a változókkal, ciklusokkal, függvényekkel és az alap algoritmusokkal.</p>
+            <p class="fw-bold mb-2">Ár: 30 000 Ft</p>
+            <span class="badge bg-success">Kezdő</span>
+          </div>
+          <div class="card-footer bg-white">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tanfolyamModal">
+              Részletek
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kártya 2 -->
+      <div class="col-12 col-md-4">
+        <div class="card h-100 text-center">
+          <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Frontend Haladó">
+          <div class="card-body">
+            <h5 class="card-title">Frontend Középhaladó</h5>
+            <p class="card-text">Bootstrap, reszponzív layout, komponens alapú gondolkodás, gyakorlati mini projektek.</p>
+            <p class="fw-bold mb-2">Ár: 40 000 Ft</p>
+            <span class="badge bg-primary">Középhaladó</span>
+          </div>
+          <div class="card-footer bg-white">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tanfolyamModal">
+              Részletek
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kártya 3 -->
+      <div class="col-12 col-md-4">
+        <div class="card h-100 text-center">
+          <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Fullstack Haladó">
+          <div class="card-body">
+            <h5 class="card-title">Fullstack Haladó</h5>
+            <p class="card-text">Node.js, adatbázis, API-k, autentikáció – építs teljes értékű webalkalmazásokat.</p>
+            <p class="fw-bold mb-2">Ár: 60 000 Ft</p>
+            <span class="badge bg-danger">Haladó</span>
+          </div>
+          <div class="card-footer bg-white">
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#tanfolyamModal">
+              Részletek
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal fade" id="tanfolyamModal" tabindex="-1" aria-labelledby="tanfolyamModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tanfolyamModalLabel">Tanfolyam részletek</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+        </div>
+        <div class="modal-body">
+          <p>Tanfolyamaink gyakorlatorientáltak, valódi fejlesztői helyzetekre készítenek fel.</p>
+          <p>Jelentkezéshez írj e-mailt: <a href="mailto:info@pelda.hu">info@pelda.hu</a></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Értem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KAPCSOLAT / LÁBLÉC -->
+  <footer id="kapcsolat" class="bg-dark text-light text-center py-4 mt-5">
+    <p class="mb-1">Email: <a href="mailto:info@pelda.hu" class="text-info text-decoration-none">info@pelda.hu</a></p>
+    <p class="mb-0">Telefon: +36 30 123 4567</p>
+  </footer>
+
+ 
+
+
+  <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+</body>
+</html>

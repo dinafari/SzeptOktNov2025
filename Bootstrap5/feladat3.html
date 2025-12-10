@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 5 Pricing</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <style>
+    #kedvenc {
+      box-shadow: rgba(0,0,0,0.4) 5px 5px 15px;
+      border: 2px solid #0d6efd;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px; /* navbar magassága */
+    }
+    #pricing { 
+      scroll-margin-top: 72px; 
+    }
+  </style>
+</head>
+<body>  
+      <!--         Mini Pricing szekció:
+
+        Bootstrap 5-tel készíts 3 oszlopos „Árazás” blokkot:
+
+        Grid: col-12 col-md-4.
+
+        Mindhárom egy card, a középső „Kedvenc” border-primary, shadow, kis „Badge” felül.
+
+        Ár nagy méretben, alatt bullet lista (list-group).
+
+        „Vásárlás” gomb → Modal nyílik meg (BS modal komponens).
+
+        Navbar felül sticky-top, a pricing részhez görgető linkkel.
+        Hint: data-bs-toggle="modal" data-bs-target="#vasarlasModal". 
+    -->
+
+
+
+
+
+
+  <!-- 🌿 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Békuc Árazás</a>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#arak"
+             onclick="document.getElementById('arak')?.scrollIntoView({behavior:'smooth', block:'start'}); return false;">
+              Árak
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#kapcsolat" 
+            onclick="document.getElementById('kapcsolat')?.scrollIntoView({behavior:'smooth', block:'start'}); return false;">
+            Kapcsolat
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h1 class="display-6 m-0">Békuc Árazás</h1>
+      <p class="text-muted">Válaszd ki a kedvencedet 👇</p>
+    </div>
+  </section>
+
+  <!-- 🌸 Pricing Section – EZ az EGYETLEN #pricing -->
+  <div id="pricing" class="container my-5">
+    <h2 class="text-center mb-4">Válaszd ki kedvenc Békucidat 🐸</h2>
+    <div class="row g-4">
+
+      <!-- Kártya 1 -->
+      <div class="col-12 col-md-4">
+        <div class="card text-center h-100">
+          <img src="./bkepek/bekuci.jpg" class="card-img-top" alt="Békuc1">
+          <a href="https://ng.24.hu/programok/2015/05/29/a-vilag-kulonleges-bekai-a-natgeo-wildon" target="_blank">békák</a>
+          <div class="card-body">
+            <h5 class="card-title">Békuc 1</h5>
+            <p class="card-text fw-bold">Árak</p>
+            <ul class="list-group">
+              <li class="list-group-item">Kicsi: 3000 Ft</li>
+              <li class="list-group-item">Közepes: 5000 Ft</li>
+              <li class="list-group-item">Nagy: 8000 Ft</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#vasarlasModal">Vásárlás</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kártya 2 (Kedvenc) -->
+      <div class="col-12 col-md-4">
+        <div id="kedvenc" class="card text-center h-100 border-primary shadow">
+          <div class="position-relative">
+            <span class="badge bg-danger position-absolute top-0 start-50 translate-middle-x mt-2">Kedvenc 💖</span>
+            <img src="./bkepek/bekuci.jpg" class="card-img-top" alt="Békuc2">
+            <a href="https://ng.24.hu/programok/2015/05/29/a-vilag-kulonleges-bekai-a-natgeo-wildon" target="_blank">békák</a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-primary">Békuc 2</h5>
+            <p class="card-text fw-bold">Árak</p>
+            <ul class="list-group">
+              <li class="list-group-item">Kicsi: 3500 Ft</li>
+              <li class="list-group-item">Közepes: 5500 Ft</li>
+              <li class="list-group-item">Nagy: 9000 Ft</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vasarlasModal">Vásárlás</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kártya 3 -->
+      <div class="col-12 col-md-4">
+        <div class="card text-center h-100">
+          <img src="./bkepek/bekuci.jpg" class="card-img-top" alt="Békuc3">
+          <a href="https://ng.24.hu/programok/2015/05/29/a-vilag-kulonleges-bekai-a-natgeo-wildon" target="_blank">békák</a>
+          <div class="card-body">
+            <h5 class="card-title">Békuc 3</h5>
+            <p class="card-text fw-bold">Árak</p>
+            <ul class="list-group">
+              <li class="list-group-item">Kicsi: 4000 Ft</li>
+              <li class="list-group-item">Közepes: 6000 Ft</li>
+              <li class="list-group-item">Nagy: 9500 Ft</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-white">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#vasarlasModal">Vásárlás</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🛒 Modal -->
+  <div class="modal fade" id="vasarlasModal" tabindex="-1" aria-labelledby="vasarlasModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="vasarlasModalLabel">Vásárlás megerősítése</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Biztosan meg szeretnéd vásárolni a kiválasztott Békucot? 🐸💚
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="confirmPurchase()">
+            Vásárlás megerősítése
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="kapcsolat" class="container my-5">
+    <h2>Kapcsolat</h2>
+    <p class="text-muted">Írj bátran: bekuc@peldacim.hu</p>
+  </section>
+
+  <!-- Csak példa kedvéért: másik szekció 'arak' id-val -->
+  <section id="arak" class="container my-5">
+    <h2>Árak (lista):</h2>
+    <p class="text-muted">Békuc1: 20000 Ft</p>
+    <p class="text-muted">Békuc2: 20000 Ft</p>
+    <p class="text-muted">Békuc3: 20000 Ft</p>
+  </section>
+
+  <script>
+    function confirmPurchase() {
+      alert('Köszönjük a vásárlást! 🐸💚');
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
