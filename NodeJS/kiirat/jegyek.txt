@@ -1,0 +1,2 @@
+Tanuló: Anna, Jegy: 5
+Tanuló: Béla, Jegy: 4

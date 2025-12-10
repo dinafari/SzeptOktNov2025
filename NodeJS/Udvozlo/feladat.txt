@@ -1,0 +1,24 @@
+💻 
+
+Server2.js -ben
+
+Node.js – könnyű gyakorló feladat: Üdvözlő szerver
+
+Feladat:
+Készíts egy egyszerű szervert, ami három útvonalat kezel:
+
+Útvonal	Mit csinál
+/	Visszaadja: „Üdvözöl a Node.js szerver!”
+/ora	Kiírja az aktuális dátumot és időt
+/udvozlet?nev=Edina	Ha van név a query-ben, akkor: „Szia, Edina!”, különben: „Szia, ismeretlen látogató!”
+✨ Tipp – Használj query stringet:
+const url = new URL(req.url, `http://${req.headers.host}`);
+const nev = url.searchParams.get("nev");
+
+🧠 Kimenet példa:
+http://localhost:3000/ → "Üdvözöl a Node.js szerver!"
+http://localhost:3000/ora → "2025-10-04T20:22:15"
+http://localhost:3000/udvozlet?nev=Edina → "Szia, Edina!"
+http://localhost:3000/udvozlet → "Szia, ismeretlen látogató!"
+
+
