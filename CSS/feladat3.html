@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween kártya</title>
+    <style>
+       #kartya {
+            transition: 0.3s;
+        }
+        #kartya:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.02);
+        }
+
+        /* Gombok — alapállapotban is legyen transition */
+        #szolid, #primer {
+            transition: 0.3s;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 80px;
+        }
+
+        #szolid {
+            background-color: darkslategray;
+            color: white;
+        }
+        #primer {
+            background-color: darkorange;
+            color: black;
+        }
+
+        /* Hover állapot */
+        #szolid:hover, #primer:hover {
+            background-color: whitesmoke;
+            color: black;
+            transform: scale(1.05);
+        }
+
+
+    </style>
+     
+</head>
+<body style="justify-content: center; display: flex;  align-items: center; object-fit: cover; height: 100vh; background-color: lightgray;">
+
+    <!-- HTML/CSS (1 feladat)
+        Profilkártya finoman
+
+        Készíts csak HTML+CSS-sel egy profilkártyát:
+
+        320–360px széles kártya, lekerekített sarkok, finom árnyék.
+
+        Felül kör alakú avatar (placeholder kép: vmi), középre igazítva.
+
+        Alatta név (félkövér), szerepkör (halvány), rövid leírás (2 sor).
+
+        Két gomb: „Követem” (primer), „Üzenet” (szolid).
+
+        Hover: kártya kicsit „megmozdul” (scale 1.02), árnyék erősödik.
+
+        Reszponzív: mobilon 100% szélesség, desktopon max 360px.
+        Hint: box-shadow, border-radius, transition, transform: scale, object-fit: cover.    
+    -->
+
+    <div id="kartya" style="width:360px; height:450px; border-radius: 20px; box-shadow: rgba(0,0,0,1) 5px 5px 5px 5px; text-align: center;margin-top: 20px; padding: 20px; background-color: peru;">
+        <img src="/CSS/kepek/spooky-halloween-pumpkin-.jpg" alt="Halloween"; style="width: 250px;height: 250px; border-radius: 15px; box-shadow: rgba(0,0,0,1) 5px 5px 5px 5px;">
+        <h2 style="font-weight: bold;">Halloween tök</h2>
+        <h5 style="color: lightslategray;">Halloweeni szereplő</h5>
+        <p>Halloweenkor faragják</p>
+        <p>Borzasztóan ilyesztő volt egykoron</p>
+        <button id="primer" style="cursor: pointer;">Követem</button>
+        <button id="szolid" style="cursor: pointer;">Üzenet</button>
+
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Béka kártya</title>
+  <style>
+    button:hover {
+      background-color: lightgreen;
+      color: white;
+      transform: scale(1.1);
+      transition: 0.3s;
+    }
+    .card:hover {
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      transform: scale(1.05);
+      transition: 0.3s;
+    }
+  </style>
+</head>
+<body style="display:flex; justify-content:center; align-items:center; height:100vh; background-color: lightseagreen;">
+  <div class="card" style="box-shadow: rgba(0,0,0,1) 5px 5px 5px; border-radius: 20px; width: 400px; background-color:rgb(140, 60, 60); text-align:center; padding:30px; cursor:pointer;">
+    <img src="/CSS/kepek/frog in green-leaves.jpg" alt="Zöld béka" style="width:300px; height:300px; border-radius:15px;">
+    <h2 style="font-size:18px; color:white;">Zöld béka</h2>
+    <p style="font-size:16px; color:#eee;">Ez egy szép kis kártya</p>
+    <button style="background-color:green; padding:8px 16px; border:none; border-radius:10px; cursor:pointer;">Gomb</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/feladt4.css">
+</head>
+<body>
+
+
+    <!--     🎨 Összetettebb HTML + CSS feladat
+
+        „Landing oldal – három szekcióval, reszponzív elrendezéssel”
+
+        Készíts csak HTML + CSS segítségével egy egyszerű landing oldalt:
+
+        Szerkezet:
+
+        Fejléc (header):
+
+        Bal oldalon logo (lehet sima szöveg is: LOGO).
+
+        Jobbra igazítva 3 link: Főoldal, Szolgáltatások, Kapcsolat.
+
+        Desktopon legyen vízszintes menü, mobilon a linkek egymás alatt (media query-vel).
+
+
+
+        Hero szekció:
+
+        Középre igazított tartalom.
+
+        Nagy cím: pl. Modern Weboldal Neked 
+        Rövid leírás
+
+        Két gomb egymás mellett:
+
+        Tudj meg többet
+
+
+
+
+        Kapcsolat
+
+        Gombok:
+
+        Lekerekített sarkok
+
+        Hoverkor: háttérszín változás + enyhe transform: scale(1.05) + box-shadow.
+
+
+
+
+        Háromoszlopos „szolgáltatás” blokk:
+
+        Desktopon 3 oszlop egymás mellett (flex vagy grid), mobilon egymás alatt.
+
+        Mindhárom „kártya”:
+
+        ikonnak kinéző kör (pl. kör alakú div más háttérszínnel)
+
+        egy cím
+
+        2–3 sor szöveg
+
+        Hoverkor a kártya kicsit „kiemelkedik” (transform, box-shadow).
+
+
+
+        Kapcsolat / lábléc:
+
+        Sötétebb háttér, világos szöveg.
+
+        Középre igazított „© 2025 – A Te Weboldalad”
+        💡Követelmények CSS-ben:
+
+        Használj:
+
+        display: flex vagy display: grid a tömbszerű elrendezéshez,
+
+        max-width + margin: 0 auto a tartalom középre húzásához,
+
+        @media query-t mobilnézethez,
+
+        transition a hover animációkhoz.-->
+
+    <!-- Elsőszekció  Tartalom-->
+    <h1>Landing oldal három szekcióval, reszponzív elrendezéssel</h1>
+    <section>
+        <header>
+          
+        
+            <nav>
+                <img src="/CSS/kepek/bird_2.jpg" alt="Logo" class="logo">
+                <a href="">Főoldal</a>
+                <a href="">Szolgáltatások</a>
+                <a href="">Kapcsolat</a>
+            </nav>
+        </header>
+       
+    </section>
+
+    <!-- Hero szekció -->
+    <section class="hero">
+
+        <h1> Modern Weboldal Neked</h1>
+        <p>Építsd fel saját karrierd!</p>
+
+        
+        <input type="button" id="tobbet"  class="button"  value="Tudj meg többet">
+        <input type="button" id="kapcsolat"     class="button"  value="Kapcsolat">
+
+    </section>
+
+    <!-- Szolgáltatások szekció -->
+
+  
+
+    <section class="szolgaltatasok">
+      
+    
+        <div class="card" id="elso">
+            <h2 class="card-title"> Modern Weboldal Neked</h2>
+            <p class="card-text">Ez egy rövid leírás Neked</p>
+            <p class="card-text">Ez egy rövid leírás Neked</p>
+            <p class="card-text">Ez egy rövid leírás Neked</p>
+       
+
+        </div>
+        <div class="card" id="masodik" >
+            <h2 class="card-title"> Modern Weboldal Neked</h2>
+            <p class="card-text">Ez egy rövid leírás Neked</p>
+            <p class="card-text">Ez egy rövid leírás Neked</p> 
+            <p class="card-text">Ez egy rövid leírás Neked</p> 
+           
+
+        </div>
+        <div class="card" id="harmadik">
+            <h2 class="card-title"> Modern Weboldal Neked</h2>
+            <p class="card-text">Ez egy rövid leírás Neked</p>
+            <p class="card-text">Ez egy rövid leírás Neked</p>
+            <p class="card-text">Ez egy rövid leírás Neked</p>
+
+        </div>
+       
+       
+    </section>
+
+    
+
+    <!-- Kapcsolat szekció -->
+    <section class="kapcsolat">
+        <h3>Kapcsolat:</h3>
+        <p>info@teweboldalad.hu</p>
+        <p>elérhetőség:+33 111 111 000</p>
+        <p>Cím: 1014 Budapest, Fő utca 1.</p>
+
+    </section>
+
+    <footer>
+        <h3>© 2025 – A Te Weboldalad</h3>
+
+
+    </footer>
+</body>
+</html>
